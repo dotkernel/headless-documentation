@@ -1,0 +1,16 @@
+docs_dir: docs/book
+site_dir: docs/html
+extra:
+  project: Headless Platform
+  current_version: v1
+  versions:
+    - v1
+nav:
+  - Home: index.md
+  - v1:
+      - Introduction: v1/introduction.md
+site_name: headless
+site_description: "Headless Platform"
+repo_url: "https://github.com/dotkernel/headless-documentation"
+plugins:
+  - search

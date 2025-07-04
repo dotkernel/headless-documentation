@@ -1,0 +1,13 @@
+{
+    "name": "dotkernel/headless-documentation",
+    "description": "Dotkernel Headless Platform documentation",
+    "type": "metapackage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dotkernel Team",
+            "email": "team@dotkernel.com"
+        }
+    ],
+    "require": {}
+}
