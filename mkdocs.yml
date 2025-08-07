@@ -9,6 +9,17 @@ nav:
   - Home: index.md
   - v1:
       - Introduction: v1/introduction.md
+      - API:
+          - "Introduction": v1/api/introduction.md
+          - "Usage": v1/api/usage.md
+      - Admin:
+          - "Introduction": v1/admin/introduction.md
+          - "Usage": v1/admin/usage.md
+      - Core:
+          - "Introduction": v1/core/introduction.md
+          - "Creation": v1/core/creation.md
+          - "Usage": v1/core/usage.md
+          - "Benefits": v1/core/benefits.md
 site_name: headless
 site_description: "Headless Platform"
 repo_url: "https://github.com/dotkernel/headless-documentation"
