@@ -18,9 +18,11 @@
         <meta name="docsearch:component" content="headless">
 
         
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/migration/full-rewrite/">
+        
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>headless - Dotkernel Documentation</title>
+        <title>Full Rewrite or Big Bang Rewrite - headless - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -167,11 +169,11 @@
                 
 
                 
-                    <li class="breadcrumb-item"><a href="../.">headless</a></li>
+                    <li class="breadcrumb-item"><a href="../../..">headless</a></li>
 
                     
 
-                    <li class="breadcrumb-item active" aria-current="page"></li>
+                    <li class="breadcrumb-item active" aria-current="page">Full Rewrite or Big Bang Rewrite</li>
                 
             
         </ol>
@@ -186,7 +188,7 @@
                     
     <div class="subnavigation hidden-print">
 <!--        <h4 class="subnavigation__title">-->
-<!--            <a href="../.">headless</a>-->
+<!--            <a href="../../..">headless</a>-->
 <!--        </h4>-->
 
         <h5 class="subnavigation__title">Table of Contents</h5>
@@ -196,8 +198,126 @@
 
                 
                 
+                    
+                        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/" class="subnavigation__link">Introduction</a>
+</li>
 
                     
+                        
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#api" role="button" aria-expanded="false" aria-controls="api">
+        <span class="subnavigation__headline">API</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="api">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../api/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../api/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="false" aria-controls="admin">
+        <span class="subnavigation__headline">Admin</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="admin">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../admin/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../admin/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#core" role="button" aria-expanded="false" aria-controls="core">
+        <span class="subnavigation__headline">Core</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="core">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/creation/" class="subnavigation__link">Creation</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/benefits/" class="subnavigation__link">Benefits</a>
+</li>
+
+        
+    </ul>
+</li>
+
                     
                 
             
@@ -209,22 +329,83 @@
                     
                     
                     
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#how-it-works" class="toc__link nav-link">How It Works</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#pluses" class="toc__link nav-link">Pluses</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#minuses" class="toc__link nav-link">Minuses</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#conclusion" class="toc__link nav-link">Conclusion</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+
                     
                 </div>
                 <div class="col-lg-9 main_docs">
                     
-
-<h1 class="content__title">404</h1>
-<blockquote>
-    <h3>Something went wrong!</h3>
-    <p>
-        We're sorry, but the page you are looking for does not exist.
-    </p>
-</blockquote>
-
-<a href="../." class="btn btn-default" role="button">Go to homepage</a>
+                    
 
 
+
+
+    
+    
+<!--        <h2 class="chapter__headline text-black-50"></h2>-->
+    
+
+    <h1 id="full-rewrite-or-big-bang-rewrite">Full Rewrite or Big Bang Rewrite</h1>
+<p>A full rewrite is a software migration strategy that implies completely rebuilding the system from scratch in the new architecture or technology.</p>
+<h2 id="how-it-works">How It Works</h2>
+<ul>
+<li>You keep the old application in use, as-is.</li>
+<li>In parallel, you work with the development team to build a new version of the application in the target environment.</li>
+<li>Once the new application is complete and tested, you redirect all execution to the new application.</li>
+<li>You decommission the old application.</li>
+</ul>
+<h2 id="pluses">Pluses</h2>
+<p>There are several advantages to this approach:</p>
+<ul>
+<li>Blank slate – No technical debt is carried over to the new application.</li>
+<li>Optimal architecture – You can code the new application without worrying about legacy code or outdated design patterns.</li>
+<li>Better maintainability and security – The new code can follow modern best practices which may be incompatible with the old code.</li>
+</ul>
+<h2 id="minuses">Minuses</h2>
+<p>The disadvantages often weigh heavy against choosing this approach:</p>
+<ul>
+<li>High risk – Your release must work on the first try, there’s no partial rollback.</li>
+<li>Long timeline – There is no immediate user value during development.</li>
+<li>Expensive – Building a second product in parallel may prove to be just as costly as the original product.</li>
+<li>Feature drift – Since the old application is still running, any updates performed on it may cause further delay on the development of the new one and greater mismatching of business logic.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Performing a full rewrite is no easy choice.
+More often than not, the costs are the main reason you would not choose this migration strategy.
+You may find yourself delaying its implementation until you are forced to do so by circumstance.</p>
+
+
+
+
+
+
+                    
                 </div>
             </div>
         </div>
@@ -333,7 +514,7 @@
 </footer>
 
         <script>
-            let base_url = '..',
+            let base_url = '../../..',
                 project  = "headless-platform",
                 siteName = 'headless';
 

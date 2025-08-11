@@ -18,9 +18,11 @@
         <meta name="docsearch:component" content="headless">
 
         
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/migration/modular-refactoring/">
+        
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>headless - Dotkernel Documentation</title>
+        <title>Modular Refactoring - headless - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -167,11 +169,11 @@
                 
 
                 
-                    <li class="breadcrumb-item"><a href="../.">headless</a></li>
+                    <li class="breadcrumb-item"><a href="../../..">headless</a></li>
 
                     
 
-                    <li class="breadcrumb-item active" aria-current="page"></li>
+                    <li class="breadcrumb-item active" aria-current="page">Modular Refactoring</li>
                 
             
         </ol>
@@ -186,7 +188,7 @@
                     
     <div class="subnavigation hidden-print">
 <!--        <h4 class="subnavigation__title">-->
-<!--            <a href="../.">headless</a>-->
+<!--            <a href="../../..">headless</a>-->
 <!--        </h4>-->
 
         <h5 class="subnavigation__title">Table of Contents</h5>
@@ -196,8 +198,126 @@
 
                 
                 
+                    
+                        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/" class="subnavigation__link">Introduction</a>
+</li>
 
                     
+                        
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#api" role="button" aria-expanded="false" aria-controls="api">
+        <span class="subnavigation__headline">API</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="api">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../api/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../api/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="false" aria-controls="admin">
+        <span class="subnavigation__headline">Admin</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="admin">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../admin/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../admin/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#core" role="button" aria-expanded="false" aria-controls="core">
+        <span class="subnavigation__headline">Core</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="core">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/creation/" class="subnavigation__link">Creation</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/benefits/" class="subnavigation__link">Benefits</a>
+</li>
+
+        
+    </ul>
+</li>
+
                     
                 
             
@@ -209,22 +329,87 @@
                     
                     
                     
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#how-it-works" class="toc__link nav-link">How It Works</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#pluses" class="toc__link nav-link">Pluses</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#minuses" class="toc__link nav-link">Minuses</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#conclusion" class="toc__link nav-link">Conclusion</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+
                     
                 </div>
                 <div class="col-lg-9 main_docs">
                     
-
-<h1 class="content__title">404</h1>
-<blockquote>
-    <h3>Something went wrong!</h3>
-    <p>
-        We're sorry, but the page you are looking for does not exist.
-    </p>
-</blockquote>
-
-<a href="../." class="btn btn-default" role="button">Go to homepage</a>
+                    
 
 
+
+
+    
+    
+<!--        <h2 class="chapter__headline text-black-50"></h2>-->
+    
+
+    <h1 id="modular-refactoring">Modular Refactoring</h1>
+<p>The Modular Refactoring is a migration strategy where you break a large, tightly coupled codebase into smaller, independent modules.
+Once the modules are defined, you begin the migration to the new architecture.</p>
+<h2 id="how-it-works">How It Works</h2>
+<ul>
+<li>Identify logical boundaries in the business logic.
+Search for sections of code that can function independently.</li>
+<li>Decouple dependencies.
+Refactor code to reduce direct cross-module calls, often introducing interfaces or APIs for communication.</li>
+<li>Isolate each module.
+Ensure each module can be built, tested, and deployed separately.</li>
+<li>Migrate module-by-module.
+Move one module at a time to the new architecture, integrate it back into the system, and test its functionality before moving on.</li>
+</ul>
+<h2 id="pluses">Pluses</h2>
+<ul>
+<li>Controlled scope – Each migration step is focused on one module.</li>
+<li>Improved maintainability – As the migration progresses, the system becomes cleaner and more modular.</li>
+<li>Enables parallel work – You can assign different development teams to migrate different modules at the same time.</li>
+<li>Lower risk – If a migration fails, only one part of the system is affected.</li>
+</ul>
+<h2 id="minuses">Minuses</h2>
+<ul>
+<li>Refactoring cost – Breaking a monolith into modules takes time and effort.</li>
+<li>Possible temporary slowdown – You may need to allocate resources from new feature development to the refactoring effort.</li>
+<li>Requires strong design discipline – You need to carefully plan modules to avoid repeated rework.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Modular Refactoring implies a great deal of preparation (proportional to the complexity of the application) before the migration takes place.
+You take e.g. the existing monolith and reorganize it into clearly defined modules, while in the same repository.
+You can the extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code.
+For the actual code migration, you can opt for the Strangler Fig Pattern.</p>
+
+
+
+
+
+
+                    
                 </div>
             </div>
         </div>
@@ -333,7 +518,7 @@
 </footer>
 
         <script>
-            let base_url = '..',
+            let base_url = '../../..',
                 project  = "headless-platform",
                 siteName = 'headless';
 

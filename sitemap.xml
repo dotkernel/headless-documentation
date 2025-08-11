@@ -2,10 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-08-11</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/introduction/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/admin/introduction/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/admin/usage/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/api/introduction/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/api/usage/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/core/benefits/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/core/creation/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/core/introduction/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/core/usage/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/full-rewrite/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/introduction/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/modular-refactoring/</loc>
+         <lastmod>2025-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/strangler-fig/</loc>
+         <lastmod>2025-08-11</lastmod>
     </url>
 </urlset>
