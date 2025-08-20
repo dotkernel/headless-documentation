@@ -38,7 +38,7 @@ class ConfigProvider
     {
         return [
             'app'   => [__DIR__ . '/../templates/app'],
-	        'error' => [__DIR__ . '/../templates/error'],
+            'error' => [__DIR__ . '/../templates/error'],
         ];
     }
 }
