@@ -1,4 +1,4 @@
-## Benefits
+# Benefits
 
 - **Centralized setup** – Instead of hardcoding bootstrap code, you declare it in a config provider so it's easy to read, change, or extend.
 - **Modular** – Each package can ship with its own config without interfering with others.

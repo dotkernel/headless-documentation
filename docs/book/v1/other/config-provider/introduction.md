@@ -24,12 +24,12 @@ class ConfigProvider
     public function getDependencies(): array
     {
         return [
-           'factories'  => [
-               Handler\HomepageHandler::class => Handler\HomepageHandlerFactory::class,
-               Handler\SearchHandler::class   => Handler\SearchHandlerFactory::class,
-           ],
-           'invokables' => [
-               Console\GenerateSearchData::class => Console\GenerateSearchData::class,
+            'factories'  => [
+                Handler\HomepageHandler::class => Handler\HomepageHandlerFactory::class,
+                Handler\SearchHandler::class   => Handler\SearchHandlerFactory::class,
+            ],
+            'invokables' => [
+                Console\GenerateSearchData::class => Console\GenerateSearchData::class,
            ],
         ];
     }
@@ -37,8 +37,8 @@ class ConfigProvider
     public function getTemplates(): array
     {
         return [
-	    'app'   => [__DIR__ . '/../templates/app'],
-	    'error' => [__DIR__ . '/../templates/error'],
+            'app'   => [__DIR__ . '/../templates/app'],
+	        'error' => [__DIR__ . '/../templates/error'],
         ];
     }
 }

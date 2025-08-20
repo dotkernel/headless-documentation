@@ -1,4 +1,4 @@
-## How the ConfigProvider works
+# How the ConfigProvider works
 
 The ConfigProvider is automatically picked up by the framework during application bootstrap.
 Let's look at it step by step:
