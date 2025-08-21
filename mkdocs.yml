@@ -20,8 +20,12 @@ nav:
           - "Creation": v1/core/creation.md
           - "Usage": v1/core/usage.md
           - "Benefits": v1/core/benefits.md
-site_name: headless
-site_description: "Headless Platform"
+      - "ConfigProvider":
+          - "Introduction": v1/config-provider/introduction.md
+          - "Functionality": v1/config-provider/functionality.md
+          - "Benefits": v1/config-provider/benefits.md
+site_name: "Dotkernel Headless Platform"
+site_description: "Dotkernel Headless Platform"
 repo_url: "https://github.com/dotkernel/headless-documentation"
 plugins:
   - search
