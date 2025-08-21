@@ -20,7 +20,7 @@ nav:
           - "Creation": v1/core/creation.md
           - "Usage": v1/core/usage.md
           - "Benefits": v1/core/benefits.md
-      - Core:
+      - Other:
           - "Config Provider":
               - "Introduction": v1/other/config-provider/introduction.md
               - "Functionality": v1/other/config-provider/functionality.md
