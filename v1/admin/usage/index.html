@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <meta name="description" content="Headless Platform">
+        <meta name="description" content="Dotkernel Headless Platform">
         
         
 
@@ -15,14 +15,14 @@
         
         <meta name="docsearch:version" content="1.0.0,latest">
         <meta name="docsearch:language" content="en">
-        <meta name="docsearch:component" content="headless">
+        <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
         <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/admin/usage/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Usage - headless - Dotkernel Documentation</title>
+        <title>Usage - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -145,7 +145,7 @@
 <!--                    </a>-->
 <!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" href="https://github.com/dotkernel/headless-documentation" title="Go to headless repository" target="_blank">
+                    <a class="nav-link fw-bold text-white" href="https://github.com/dotkernel/headless-documentation" title="Go to Dotkernel Headless Platform repository" target="_blank">
                         <i class="bi bi-github"></i>
                         GitHub
                     </a>
@@ -169,7 +169,7 @@
                 
 
                 
-                    <li class="breadcrumb-item"><a href="../../..">headless</a></li>
+                    <li class="breadcrumb-item"><a href="../../..">Dotkernel Headless Platform</a></li>
 
                     
                         
@@ -200,7 +200,7 @@
                     
     <div class="subnavigation hidden-print">
 <!--        <h4 class="subnavigation__title">-->
-<!--            <a href="../../..">headless</a>-->
+<!--            <a href="../../..">Dotkernel Headless Platform</a>-->
 <!--        </h4>-->
 
         <h5 class="subnavigation__title">Table of Contents</h5>
@@ -331,6 +331,66 @@
 </li>
 
                     
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#configprovider" role="button" aria-expanded="false" aria-controls="configprovider">
+        <span class="subnavigation__headline">ConfigProvider</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="configprovider">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../config-provider/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../config-provider/functionality/" class="subnavigation__link">Functionality</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../config-provider/benefits/" class="subnavigation__link">Benefits</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
                 
             
         </ul>
@@ -361,22 +421,18 @@
     
 
     <h1 id="usage">Usage</h1>
-<p>Dotkernel API can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
+<p>Dotkernel Admin can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
 These components are designed to complement each other (out-of-box they are separate codebases):</p>
 <ul>
 <li><strong>Dotkernel API</strong> exposes the content to 3rd-party frontends or backends.</li>
 <li><strong>Dotkernel Admin</strong> (optional) manages the data (create, edit, delete).</li>
 <li><strong>Dotkernel Queue</strong> (optional) queue management microservice.</li>
 </ul>
-<p>A safe bet is to start with Dotkernel API and integrate it into your existing platform.
-The API can manage the access permissions to keep your data secure:</p>
-<ul>
-<li>Admin-level users create and edit the data for your existing backend.</li>
-<li>Regular users read the data for your frontend.</li>
-</ul>
+<p>You can start with Dotkernel Admin and integrate it into your existing platform.
+The Admin has built-in reports and graphs that can be configured and customized based on your needs.</p>
 <p>Later on you can add:</p>
 <ul>
-<li>Dotkernel Admin for its simple table-based approach, its reports and graphs.</li>
+<li>Dotkernel API to handle all data manipulation.</li>
 <li>Dotkernel Queue for its asynchronous task processing.</li>
 </ul>
 
@@ -520,7 +576,7 @@ The API can manage the access permissions to keep your data secure:</p>
         <script>
             let base_url = '../../..',
                 project  = "headless-platform",
-                siteName = 'headless';
+                siteName = 'Dotkernel Headless Platform';
 
                 document.addEventListener("DOMContentLoaded", function() {
                     document.querySelectorAll('.subnavigation__link').forEach(function(link) {
@@ -541,7 +597,7 @@ The API can manage the access permissions to keep your data secure:</p>
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search in headless" id="mkdocs-search-query">
+                        <input type="text" class="form-control" placeholder="Search in Dotkernel Headless Platform" id="mkdocs-search-query">
                     </div>
                 </form>
                 <div id="mkdocs-search-results"></div>

@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/api/usage/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/config-provider/functionality/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Usage - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>Functionality - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -180,12 +180,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">API</li>
+                                <li class="breadcrumb-item">ConfigProvider</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Usage</li>
+                    <li class="breadcrumb-item active" aria-current="page">Functionality</li>
                 
             
         </ol>
@@ -235,13 +235,13 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../../api/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Usage</a>
+<li class="subnavigation__list-item ">
+    <a href="../../api/usage/" class="subnavigation__link">Usage</a>
 </li>
 
         
@@ -371,19 +371,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../config-provider/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Functionality</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../config-provider/functionality/" class="subnavigation__link">Functionality</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../config-provider/benefits/" class="subnavigation__link">Benefits</a>
+    <a href="../benefits/" class="subnavigation__link">Benefits</a>
 </li>
 
         
@@ -417,28 +417,32 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">API</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">ConfigProvider</h2>-->
     
 
-    <h1 id="usage">Usage</h1>
-<p>Dotkernel API can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
-These components are designed to complement each other (out-of-box they are separate codebases):</p>
+    <h1 id="how-the-configprovider-works">How the ConfigProvider works</h1>
+<p>The ConfigProvider is automatically picked up by the framework during application bootstrap.
+Let's look at it step by step:</p>
 <ul>
-<li><strong>Dotkernel API</strong> exposes the content to 3rd-party frontends or backends.</li>
-<li><strong>Dotkernel Admin</strong> (optional) manages the data (create, edit, delete).</li>
-<li><strong>Dotkernel Queue</strong> (optional) queue management microservice.</li>
+<li><strong>Merge the global configuration</strong> - All ConfigProviders are merged into one array.</li>
+<li><strong>Read the configuration array</strong> - The call is similar to the below and expects an array of entries:</li>
 </ul>
-<p>A safe bet is to start with Dotkernel API and integrate it into your existing platform.
-The API can manage the access permissions to keep your data secure:</p>
+<pre class="highlight"><code class="language-php">$config = $container-&gt;get('config')['key'] ?? [];</code></pre>
 <ul>
-<li>Admin-level users create and edit the data for your existing backend.</li>
-<li>Regular users read the data for your frontend.</li>
+<li><strong>Resolve item</strong> - <code>$app-&gt;pipe()</code> is called to resolve one of the below instances:<ul>
+<li>Resolve the service name from the container</li>
+<li>Wrap the middleware, if an array is provided</li>
+<li>Call the closure or invokable object.</li>
 </ul>
-<p>Later on you can add:</p>
-<ul>
-<li>Dotkernel Admin for its simple table-based approach, its reports and graphs.</li>
-<li>Dotkernel Queue for its asynchronous task processing.</li>
+</li>
+<li><strong>Handle errors</strong> - This middleware is the last one in the pipeline to make sure it handles any exceptions.</li>
+<li><strong>Execute at runtime</strong> - <a href="https://docs.laminas.dev/laminas-stratigility/">Laminas Stratigility</a> iterates over the pipeline in the order it was registered.<ul>
+<li>Each middleware can <strong>handle</strong> the request and return a response, or <strong>delegate</strong> execution to the next middleware in the pipeline, until a <code>ResponseInterface</code> is returned to the client.</li>
 </ul>
+</li>
+</ul>
+<p>Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.</p>
+<p><img alt="Headless Platform with Core Submodule" src="https://docs.dotkernel.org/img/headless-platform/ConfigProvider.png" class="img-responsive"/></p>
 
 
 
@@ -458,8 +462,8 @@ The API can manage the access permissions to keep your data secure:</p>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../../admin/introduction/">
-                    Introduction
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../benefits/">
+                    Benefits
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/api/usage/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/config-provider/introduction/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Usage - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>Introduction - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -180,12 +180,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">API</li>
+                                <li class="breadcrumb-item">ConfigProvider</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Usage</li>
+                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
                 
             
         </ol>
@@ -235,13 +235,13 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../../api/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Usage</a>
+<li class="subnavigation__list-item ">
+    <a href="../../api/usage/" class="subnavigation__link">Usage</a>
 </li>
 
         
@@ -370,20 +370,20 @@
     <ul class="subnavigation__list collapse" id="configprovider">
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../config-provider/introduction/" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../config-provider/functionality/" class="subnavigation__link">Functionality</a>
+    <a href="../functionality/" class="subnavigation__link">Functionality</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../config-provider/benefits/" class="subnavigation__link">Benefits</a>
+    <a href="../benefits/" class="subnavigation__link">Benefits</a>
 </li>
 
         
@@ -417,27 +417,57 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">API</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">ConfigProvider</h2>-->
     
 
-    <h1 id="usage">Usage</h1>
-<p>Dotkernel API can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
-These components are designed to complement each other (out-of-box they are separate codebases):</p>
+    <h1 id="introduction">Introduction</h1>
+<p>In PHP, the <code>ConfigProvider</code> is a class that is part of an application's bootstrap process.
+It returns an array of configuration, settings, or anything else your application needs.
+In Dotkernel, each application module and package contains a <code>ConfigProvider</code> that normally returns:</p>
 <ul>
-<li><strong>Dotkernel API</strong> exposes the content to 3rd-party frontends or backends.</li>
-<li><strong>Dotkernel Admin</strong> (optional) manages the data (create, edit, delete).</li>
-<li><strong>Dotkernel Queue</strong> (optional) queue management microservice.</li>
+<li>Dependency injection mappings.</li>
+<li>Request Handlers.</li>
+<li>Template file paths.</li>
 </ul>
-<p>A safe bet is to start with Dotkernel API and integrate it into your existing platform.
-The API can manage the access permissions to keep your data secure:</p>
+<p>Here is an example in Dotkernel, which is an approach similar to Laminas/Mezzio:</p>
+<pre class="highlight"><code class="language-php">class ConfigProvider
+{
+    public function __invoke(): array
+    {
+        return [
+            'dependencies' =&gt; $this-&gt;getDependencies(),
+            'templates'    =&gt; $this-&gt;getTemplates(),
+        ];
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            'factories'  =&gt; [
+                Handler\HomepageHandler::class =&gt; Handler\HomepageHandlerFactory::class,
+                Handler\SearchHandler::class   =&gt; Handler\SearchHandlerFactory::class,
+            ],
+            'invokables' =&gt; [
+                Console\GenerateSearchData::class =&gt; Console\GenerateSearchData::class,
+           ],
+        ];
+    }
+
+    public function getTemplates(): array
+    {
+        return [
+            'app'   =&gt; [__DIR__ . '/../templates/app'],
+            'error' =&gt; [__DIR__ . '/../templates/error'],
+        ];
+    }
+}</code></pre>
+<p>All Dotkernel applications and packages use ConfigProviders:</p>
 <ul>
-<li>Admin-level users create and edit the data for your existing backend.</li>
-<li>Regular users read the data for your frontend.</li>
-</ul>
-<p>Later on you can add:</p>
-<ul>
-<li>Dotkernel Admin for its simple table-based approach, its reports and graphs.</li>
-<li>Dotkernel Queue for its asynchronous task processing.</li>
+<li><a href="https://docs.dotkernel.org/api-documentation/">Dotkernel API</a></li>
+<li><a href="https://docs.dotkernel.org/admin-documentation/">Dotkernel Admin</a></li>
+<li><a href="https://docs.dotkernel.org/frontend-documentation/">Dotkernel Frontend</a></li>
+<li><a href="https://docs.dotkernel.org/light-documentation/">Dotkernel Light</a></li>
+<li><a href="https://docs.dotkernel.org/packages/">Dotkernel Packages</a></li>
 </ul>
 
 
@@ -448,9 +478,9 @@ The API can manage the access permissions to keep your data secure:</p>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../introduction/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../core/benefits/">
                     <i class="bi bi-chevron-left"></i>
-                    Introduction
+                    Benefits
                 </a>
             
         </li>
@@ -458,8 +488,8 @@ The API can manage the access permissions to keep your data secure:</p>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../../admin/introduction/">
-                    Introduction
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../functionality/">
+                    Functionality
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
