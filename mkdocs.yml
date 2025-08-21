@@ -21,9 +21,9 @@ nav:
           - "Usage": v1/core/usage.md
           - "Benefits": v1/core/benefits.md
       - "ConfigProvider":
-          - "Introduction": v1/other/config-provider/introduction.md
-          - "Functionality": v1/other/config-provider/functionality.md
-          - "Benefits": v1/other/config-provider/benefits.md
+          - "Introduction": v1/config-provider/introduction.md
+          - "Functionality": v1/config-provider/functionality.md
+          - "Benefits": v1/config-provider/benefits.md
 site_name: "Dotkernel Headless Platform"
 site_description: "Dotkernel Headless Platform"
 repo_url: "https://github.com/dotkernel/headless-documentation"
