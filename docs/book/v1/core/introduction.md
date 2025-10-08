@@ -11,3 +11,5 @@ General rules:
 - The golden rule for the Core codebase is that it is the only place which manages the database entities.
 - As much as possible, all Doctrine entities must reside in Core.
 - The current location of the Core submodule is `src/Core`.
+
+[Shared Core Submodule in Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/shared-core-submodule-in-dotkernel-headless-platform/)
