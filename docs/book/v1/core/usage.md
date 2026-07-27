@@ -1,5 +1,11 @@
 # Using the Core Submodule
 
+## Summary
+
+Explains how multiple applications share the Core submodule, what kinds of entities live in each application versus Core, and when to add new shared code to Core.
+
+## Details
+
 Once the shared Core submodule is separated and imported into each application, your platform can look like in the example below:
 
 - API + Core
@@ -23,3 +29,14 @@ There are already shared entities which are identical, so the best place for the
 Whenever you create new shared code, you should add it in the Core submodule and make sure to keep it updated in all your applications.
 
 > This does not mean that all new code should be in Core, as there are plenty of instances when certain functionality is designed to only be used by only one application.
+
+## FAQ
+
+**Q: What does a platform using the Core submodule look like?**
+A: Each application (API, Admin, Queue) pairs with Core, with each box being a separate Git repository.
+
+**Q: Should all new code go into Core?**
+A: No, only shared code should go into Core — functionality used by only one application can stay in that application.
+
+**Q: What kinds of entities are already split between applications?**
+A: For example, the admin has admins, admin logins, and settings entities, while the API has users, admins, and authentication entities.

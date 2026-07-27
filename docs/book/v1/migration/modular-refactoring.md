@@ -1,5 +1,11 @@
 # Modular Refactoring
 
+## Summary
+
+Describes the Modular Refactoring migration strategy, how it works, and its main advantages and disadvantages.
+
+## Definition
+
 The Modular Refactoring is a migration strategy where you break a large, tightly coupled codebase into smaller, independent modules.
 Once the modules are defined, you begin the migration to the new architecture.
 
@@ -33,3 +39,14 @@ Modular Refactoring implies a great deal of preparation (proportional to the com
 You take e.g. the existing monolith and reorganize it into clearly defined modules, while in the same repository.
 You can the extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code.
 For the actual code migration, you can opt for the Strangler Fig Pattern.
+
+## FAQ
+
+**Q: What is Modular Refactoring?**
+A: Breaking a large, tightly coupled codebase into smaller, independent modules before migrating them.
+
+**Q: Can teams work on Modular Refactoring in parallel?**
+A: Yes, it enables parallel work — different teams can migrate different modules at the same time.
+
+**Q: What pattern is recommended for the actual code migration after modularizing?**
+A: The Strangler Fig Pattern.

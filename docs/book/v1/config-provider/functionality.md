@@ -1,5 +1,11 @@
 # How the ConfigProvider works
 
+## Summary
+
+Walks through how the ConfigProvider is picked up during bootstrap, merged, resolved, and executed within the Mezzio middleware pipeline.
+
+## Details
+
 The ConfigProvider is automatically picked up by the framework during application bootstrap.
 Let's look at it step by step:
 
@@ -21,3 +27,14 @@ $config = $container->get('config')['key'] ?? [];
 Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.
 
 ![Headless Platform with Core Submodule](https://docs.dotkernel.org/img/headless-platform/ConfigProvider.png)
+
+## FAQ
+
+**Q: When is the ConfigProvider picked up?**
+A: Automatically, by the framework during application bootstrap.
+
+**Q: What happens during the "Resolve item" step?**
+A: `$app->pipe()` resolves a service name from the container, wraps a middleware array, or calls a closure/invokable object.
+
+**Q: Why does the error-handling middleware run last in the pipeline?**
+A: So it can catch any exceptions raised by the preceding middleware.
