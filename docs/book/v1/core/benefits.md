@@ -27,3 +27,8 @@ A: Yes, it allows splitting the work across multiple developers.
 
 **Q: How do new applications connect to the platform?**
 A: Each new application connects via the central API, which services everything the other applications require.
+
+## See also
+
+- [Introduction](introduction.md)
+- [Using the Core Submodule](usage.md)

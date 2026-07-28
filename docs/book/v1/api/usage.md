@@ -7,11 +7,7 @@ Explains how Dotkernel API fits alongside Dotkernel Admin and Dotkernel Queue, a
 ## Details
 
 Dotkernel API can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
-These components are designed to complement each other (out-of-box they are separate codebases):
-
-- **Dotkernel API** exposes the content to 3rd-party frontends or backends.
-- **Dotkernel Admin** (optional) manages the data (create, edit, delete).
-- **Dotkernel Queue** (optional) queue management microservice.
+Out of the box, API, Admin, and Queue are separate codebases designed to complement each other — see the [Architecture Overview](../architecture.md) for how they fit together.
 
 A safe bet is to start with Dotkernel API and integrate it into your existing platform.
 The API can manage the access permissions to keep your data secure:
@@ -34,3 +30,9 @@ A: Admin-level users create and edit the data, while regular users read the data
 
 **Q: What can I add to Dotkernel API later?**
 A: Dotkernel Admin for its table-based management, reports and graphs, and Dotkernel Queue for asynchronous task processing.
+
+## See also
+
+- [Dotkernel Admin: Usage](../admin/usage.md)
+- [Dotkernel Queue: Usage](../queue/usage.md)
+- [Architecture Overview](../architecture.md)

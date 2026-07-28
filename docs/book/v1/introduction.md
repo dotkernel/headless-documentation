@@ -14,9 +14,9 @@ The responses from the platform are then used by another system, such as a websi
 Its design leads to a great deal of versatility in the setup and configuration.
 Here are some advantages of the Headless Platform:
 
-- The ability to have multiple frontends, each targeted to various end-users, like desktop vs mobile, iOS vs Android etc.
+- The ability to have multiple frontends, each targeted to various end-users, like desktop vs mobile, iOS vs Android, etc.
 - Different frontends (websites) for various niches (younger vs older users) and countries (including localization).
-- Ability to customise separate frontends in terms of design, as well as available features.
+- Ability to customize separate frontends in terms of design, as well as available features.
 
 ## FAQ
 
@@ -28,3 +28,8 @@ A: Another system, such as a website or mobile app.
 
 **Q: What are the advantages of this design?**
 A: It allows multiple frontends targeted to different end-users, niches, and countries, each customizable in design and features.
+
+## See also
+
+- [Architecture Overview](architecture.md) — how Dotkernel implements this principle with API, Admin, Queue, and Core.
+- [Getting Started](getting-started.md) — prerequisites and installation basics.

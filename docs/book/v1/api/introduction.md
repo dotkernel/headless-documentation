@@ -7,7 +7,7 @@ An overview of Dotkernel API, the Mezzio-based REST API at the root of the Dotke
 ## Details
 
 Dotkernel API is a REST API based on the Mezzio skeleton.
-The API is the root or the Dotkernel Headless Platform.
+The API is the root of the Dotkernel Headless Platform.
 
 Dotkernel API:
 
@@ -25,3 +25,8 @@ A: It is the root of the Dotkernel Headless Platform.
 
 **Q: What standards does Dotkernel API implement?**
 A: PSR-7 and PSR-15, as defined by the PHP Framework Interop Group (PHP-FIG).
+
+## See also
+
+- [Usage](usage.md) — how API fits alongside Admin and Queue.
+- [Architecture Overview](../architecture.md) — how all the platform pieces fit together.

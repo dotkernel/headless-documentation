@@ -42,3 +42,9 @@ A: The ability to intercept requests and redirect execution via a routing layer.
 
 **Q: Why is this pattern recommended for complex legacy applications?**
 A: It mitigates downtime and risk by handling small, manageable sections of code at a time.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Modular Refactoring](modular-refactoring.md)
+- [Full Rewrite or Big Bang Rewrite](full-rewrite.md)

@@ -68,3 +68,9 @@ A: Dotkernel API, Admin, Frontend, Light, and Packages all use ConfigProviders.
 
 **Q: Is the Dotkernel ConfigProvider approach specific to Dotkernel?**
 A: No, it follows an approach similar to Laminas/Mezzio.
+
+## See also
+
+- [How the ConfigProvider works](functionality.md)
+- [Benefits](benefits.md)
+- [Glossary](../glossary.md)

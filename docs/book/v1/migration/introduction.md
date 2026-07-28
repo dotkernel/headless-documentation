@@ -32,3 +32,10 @@ A: Replatforming, refactoring, and database or storage migration.
 
 **Q: Why is migration a good opportunity beyond just moving code?**
 A: It's a chance to implement modern design patterns recommended by the development community.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Full Rewrite or Big Bang Rewrite](full-rewrite.md)
+- [Modular Refactoring](modular-refactoring.md)
+- [Strangler Fig Pattern or Incremental Migration](strangler-fig.md)

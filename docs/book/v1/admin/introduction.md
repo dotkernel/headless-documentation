@@ -26,3 +26,8 @@ A: Yes, it has built-in reports and graphs to help you monitor your platform.
 
 **Q: What standards does Dotkernel Admin implement?**
 A: PSR-7 and PSR-15, as defined by the PHP Framework Interop Group (PHP-FIG).
+
+## See also
+
+- [Usage](usage.md) — how Admin fits alongside API and Queue.
+- [Architecture Overview](../architecture.md) — how all the platform pieces fit together.

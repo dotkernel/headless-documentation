@@ -37,7 +37,7 @@ Move one module at a time to the new architecture, integrate it back into the sy
 
 Modular Refactoring implies a great deal of preparation (proportional to the complexity of the application) before the migration takes place.
 You take e.g. the existing monolith and reorganize it into clearly defined modules, while in the same repository.
-You can the extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code.
+You can then extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code.
 For the actual code migration, you can opt for the Strangler Fig Pattern.
 
 ## FAQ
@@ -50,3 +50,9 @@ A: Yes, it enables parallel work — different teams can migrate different modul
 
 **Q: What pattern is recommended for the actual code migration after modularizing?**
 A: The Strangler Fig Pattern.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Strangler Fig Pattern or Incremental Migration](strangler-fig.md)
+- [Full Rewrite or Big Bang Rewrite](full-rewrite.md)

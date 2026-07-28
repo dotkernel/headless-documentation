@@ -26,7 +26,7 @@ $config = $container->get('config')['key'] ?? [];
 
 Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.
 
-![Headless Platform with Core Submodule](https://docs.dotkernel.org/img/headless-platform/ConfigProvider.png)
+![Diagram of Mezzio and Dotkernel merging ConfigProviders into the middleware pipeline](https://docs.dotkernel.org/img/headless-platform/ConfigProvider.png)
 
 ## FAQ
 
@@ -38,3 +38,8 @@ A: `$app->pipe()` resolves a service name from the container, wraps a middleware
 
 **Q: Why does the error-handling middleware run last in the pipeline?**
 A: So it can catch any exceptions raised by the preceding middleware.
+
+## See also
+
+- [Introduction](introduction.md)
+- [Benefits](benefits.md)

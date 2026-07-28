@@ -10,7 +10,7 @@ The Core submodule is a common codebase set up to be used by the Dotkernel appli
 The project setup may differ - e.g. two APIs, one Admin, 3 Frontends - but the Core submodule can be included in all of them.
 
 By having a common module in your Dotkernel applications, you ensure that each of them uses entities and services in the same way.
-It helps to make service updates easier to sync in all the application in your platform.
+It helps to make service updates easier to sync across all the applications in your platform.
 
 General rules:
 
@@ -30,3 +30,9 @@ A: It's the only place that manages the database entities.
 
 **Q: Where is the Core submodule located?**
 A: At `src/Core`.
+
+## See also
+
+- [Benefits of the Core Submodule](benefits.md)
+- [Creating a Core Submodule](creation.md)
+- [Using the Core Submodule](usage.md)

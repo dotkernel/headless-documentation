@@ -48,3 +48,9 @@ A: High risk — the release must work on the first try, with no partial rollbac
 
 **Q: Why might a full rewrite be expensive?**
 A: Building a second product in parallel can prove just as costly as the original product.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Modular Refactoring](modular-refactoring.md)
+- [Strangler Fig Pattern or Incremental Migration](strangler-fig.md)
