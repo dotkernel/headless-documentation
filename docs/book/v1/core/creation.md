@@ -21,7 +21,8 @@ The full steps for creating a submodule are described in [Git Tools – Submodul
 
 First create a new Git repository that will contain the Core code.
 
-> If the existing Core folder already has commit history you want to keep, extract it with a history-preserving tool such as `git subtree split` before pushing to the new repository. Simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.
+> If the existing Core folder already has commit history you want to keep, extract it with a history-preserving tool such as `git subtree split` before pushing to the new repository.
+> Simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.
 
 To create the submodule in an application, you need to have Git create the `.gitmodules` file in the root of the main repository by running the command below.
 Use the url from the new repository you just created instead of `<url>`:

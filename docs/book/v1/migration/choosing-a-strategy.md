@@ -8,11 +8,11 @@ A decision guide comparing the Full Rewrite, Modular Refactoring, and Strangler 
 
 Each [migration strategy](introduction.md) documented in this section trades off risk, timeline, and cost differently:
 
-| | [Full Rewrite](full-rewrite.md) | [Modular Refactoring](modular-refactoring.md) | [Strangler Fig](strangler-fig.md) |
-|---|---|---|---|
-| Risk | High — no partial rollback | Moderate — contained to one module at a time once modularized | Low — each change is small and reversible |
-| Timeline | Long, with no value delivered until launch | Long upfront preparation, then incremental | Incremental, with continuous delivery |
-| Team size | Can be smaller, but works in isolation from the live system | Can scale across teams once modules are defined | Can be smaller, since work is isolated by feature |
+|                 | [Full Rewrite](full-rewrite.md)                                                    | [Modular Refactoring](modular-refactoring.md)                                | [Strangler Fig](strangler-fig.md)                                      |
+|-----------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Risk            | High — no partial rollback                                                         | Moderate — contained to one module at a time once modularized                | Low — each change is small and reversible                              |
+| Timeline        | Long, with no value delivered until launch                                         | Long upfront preparation, then incremental                                   | Incremental, with continuous delivery                                  |
+| Team size       | Can be smaller, but works in isolation from the live system                        | Can scale across teams once modules are defined                              | Can be smaller, since work is isolated by feature                      |
 | Best suited for | Small or simple systems, or codebases too tightly coupled to migrate incrementally | Large, tightly coupled monoliths that need to be decomposed before migrating | Complex, business-critical legacy systems that can't tolerate downtime |
 
 As a general rule:

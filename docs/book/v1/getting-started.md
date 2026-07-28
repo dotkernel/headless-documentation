@@ -8,7 +8,8 @@ Explains the prerequisites and general installation flow for setting up a Dotker
 
 Before installing any Dotkernel application, make sure you have:
 
-- **PHP** – Dotkernel API and Admin require PHP 8.3, 8.4, or 8.5. Dotkernel Queue requires PHP 8.4 or 8.5.
+- **PHP** – Dotkernel API and Admin require PHP 8.3, 8.4, or 8.5.
+  Dotkernel Queue requires PHP 8.4 or 8.5.
 - **Composer** – used to install and manage dependencies for every Dotkernel application.
 - **A relational database** – API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database (the `utf8mb4_general_ci` collation is recommended).
 - **Git** – required if you plan to share code across applications via a [Core submodule](core/creation.md).
@@ -18,16 +19,19 @@ Before installing any Dotkernel application, make sure you have:
 Both applications follow the same general installation pattern:
 
 1. Clone the application's repository into an empty project directory and install its dependencies with Composer.
-2. During installation, Composer may prompt you about registering additional ConfigProviders. Choose not to inject them — the application already includes the [ConfigProviders](config-provider/introduction.md) it needs.
+2. During installation, Composer may prompt you about registering additional ConfigProviders.
+   Choose not to inject them — the application already includes the [ConfigProviders](config-provider/introduction.md) it needs.
 3. Duplicate the distributed configuration files (for example the local and CORS configuration) into their local, non-versioned counterparts, and fill in your database connection parameters.
 4. Run the database migrations, and the fixtures if provided, to seed initial data.
 5. Enable development mode while you're building the application.
 
-> Dotkernel Admin ships with a default admin account for first login. Change its credentials before deploying to production.
+> Dotkernel Admin ships with a default admin account for first login.
+> Change its credentials before deploying to production.
 
 ### Installing Dotkernel Queue
 
-Dotkernel Queue is set up separately from API and Admin, since it centers on asynchronous message processing rather than a database-backed admin interface. Refer to the official Dotkernel Queue documentation for its installation and message transport configuration steps.
+Dotkernel Queue is set up separately from API and Admin, since it centers on asynchronous message processing rather than a database-backed admin interface.
+Refer to the official Dotkernel Queue documentation for its installation and message transport configuration steps.
 
 ## FAQ
 
