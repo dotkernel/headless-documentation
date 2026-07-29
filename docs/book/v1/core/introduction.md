@@ -23,12 +23,15 @@ General rules:
 ## FAQ
 
 **Q: Can the same Core submodule be used across multiple applications?**
+
 A: Yes, it can be included in any combination of APIs, Admins, and Frontends in your project.
 
 **Q: What is the golden rule for the Core codebase?**
+
 A: It's the only place that manages the database entities.
 
 **Q: Where is the Core submodule located?**
+
 A: At `src/Core`.
 
 ## See also

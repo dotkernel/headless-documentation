@@ -35,12 +35,15 @@ The development team can be smaller (since you isolate sections of code you work
 ## FAQ
 
 **Q: What is the Strangler Fig Pattern?**
+
 A: A migration strategy that gradually replaces parts of the old application with new components until the old one is no longer needed.
 
 **Q: What must be in place for the Strangler Fig Pattern to work?**
+
 A: The ability to intercept requests and redirect execution via a routing layer.
 
 **Q: Why is this pattern recommended for complex legacy applications?**
+
 A: It mitigates downtime and risk by handling small, manageable sections of code at a time.
 
 ## See also

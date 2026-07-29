@@ -31,12 +31,15 @@ Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to buil
 ## FAQ
 
 **Q: When is the ConfigProvider picked up?**
+
 A: Automatically, by the framework during application bootstrap.
 
 **Q: What happens during the "Resolve item" step?**
+
 A: `$app->pipe()` resolves a service name from the container, wraps a middleware array, or calls a closure/invokable object.
 
 **Q: Why does the error-handling middleware run last in the pipeline?**
+
 A: So it can catch any exceptions raised by the preceding middleware.
 
 ## See also

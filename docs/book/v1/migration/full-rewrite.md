@@ -41,12 +41,15 @@ You may find yourself delaying its implementation until you are forced to do so 
 ## FAQ
 
 **Q: What is a Full Rewrite migration strategy?**
+
 A: Completely rebuilding the system from scratch in the new architecture or technology.
 
 **Q: What is the biggest risk of a full rewrite?**
+
 A: High risk — the release must work on the first try, with no partial rollback.
 
 **Q: Why might a full rewrite be expensive?**
+
 A: Building a second product in parallel can prove just as costly as the original product.
 
 ## See also

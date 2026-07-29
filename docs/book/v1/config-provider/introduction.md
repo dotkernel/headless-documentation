@@ -61,12 +61,15 @@ All Dotkernel applications and packages use ConfigProviders:
 ## FAQ
 
 **Q: What does a ConfigProvider return in Dotkernel?**
+
 A: Dependency injection mappings, request handlers, and template file paths.
 
 **Q: Which Dotkernel applications use ConfigProviders?**
+
 A: Dotkernel API, Admin, Frontend, Light, and Packages all use ConfigProviders.
 
 **Q: Is the Dotkernel ConfigProvider approach specific to Dotkernel?**
+
 A: No, it follows an approach similar to Laminas/Mezzio.
 
 ## See also

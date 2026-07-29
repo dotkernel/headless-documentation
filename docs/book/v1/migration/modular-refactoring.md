@@ -43,12 +43,15 @@ For the actual code migration, you can opt for the Strangler Fig Pattern.
 ## FAQ
 
 **Q: What is Modular Refactoring?**
+
 A: Breaking a large, tightly coupled codebase into smaller, independent modules before migrating them.
 
 **Q: Can teams work on Modular Refactoring in parallel?**
+
 A: Yes, it enables parallel work — different teams can migrate different modules at the same time.
 
 **Q: What pattern is recommended for the actual code migration after modularizing?**
+
 A: The Strangler Fig Pattern.
 
 ## See also

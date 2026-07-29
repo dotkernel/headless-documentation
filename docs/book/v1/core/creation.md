@@ -60,18 +60,23 @@ git submodule update
 ## FAQ
 
 **Q: Where can I find the full steps for creating a Git submodule?**
+
 A: In the official Git documentation, [Git Tools – Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 **Q: What command creates a submodule in an application?**
+
 A: `git submodule add <url>`, using the URL of the new Core repository.
 
 **Q: How do I get the submodule after cloning the project?**
+
 A: Run `git submodule init` followed by `git submodule update`.
 
 **Q: Should I keep the existing Core module after adding the submodule?**
+
 A: No, delete the existing Core module before adding the submodule to other applications.
 
 **Q: Will I lose the Core folder's Git history when I create the submodule?**
+
 A: Yes, unless you extract it first with a history-preserving tool such as `git subtree split` — simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.
 
 ## See also
