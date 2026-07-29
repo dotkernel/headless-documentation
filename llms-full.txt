@@ -1,0 +1,686 @@
+# Dotkernel Headless Platform
+
+> Dotkernel is an open-source headless platform for PHP that decouples backend services from the frontends that consume them. It ships as a set of independent, PSR-7/PSR-15-compliant applications built on the Mezzio microframework — a REST API, an administration UI (Admin), and an asynchronous task-processing microservice (Queue) — which share database entities and services through a common Core submodule and bootstrap through ConfigProviders. This document covers the platform's architecture, how to install and combine its pieces, and how to migrate an existing system onto it.
+
+## Introduction
+
+The principle of a Headless Platform is to decouple the User Interface (frontend) from the backend services. The responses from the platform are then used by another system, such as a website or mobile app.
+
+![Headless Platform](https://docs.dotkernel.org/img/headless-platform/api-comms4.png)
+
+Its design leads to a great deal of versatility in the setup and configuration. Advantages of the Headless Platform include:
+
+- The ability to have multiple frontends, each targeted to various end-users, like desktop vs mobile, iOS vs Android, etc.
+- Different frontends (websites) for various niches (younger vs older users) and countries (including localization).
+- Ability to customize separate frontends in terms of design, as well as available features.
+
+### FAQ
+
+**Q: What is the core principle of a Headless Platform?**
+A: Decoupling the User Interface (frontend) from the backend services.
+
+**Q: Who consumes the platform's responses?**
+A: Another system, such as a website or mobile app.
+
+**Q: What are the advantages of this design?**
+A: It allows multiple frontends targeted to different end-users, niches, and countries, each customizable in design and features.
+
+## Architecture Overview
+
+The Headless Platform principle is to decouple the frontend from the backend services, so any number of outside systems can consume the same backend. Dotkernel implements this with four building blocks, each its own Git repository, which you combine based on your needs:
+
+- **Dotkernel API** exposes your data to 3rd-party frontends or backends.
+- **Dotkernel Admin** (optional) manages the data through a simple table-based UI, with built-in reports and graphs.
+- **Dotkernel Queue** (optional) handles asynchronous task processing as its own microservice.
+- **Core submodule** is the shared codebase that any of the above applications can include, so they all manage database entities and services the same way.
+
+You don't need every piece from the start. You can begin with just Admin or just API and add the others later as requirements grow. Once you're running more than one application, pull the shared logic out into a Core submodule and include it in each one — a typical setup looks like API + Core, Admin + Core, and Queue + Core, each in its own repository, all reading from the same shared entities and services.
+
+Regardless of which pieces you use, every Dotkernel application and package boots the same way: through a ConfigProvider that declares its dependencies, handlers, and configuration, merged together by the framework at bootstrap time.
+
+### FAQ
+
+**Q: What are the building blocks of the Dotkernel Headless Platform?**
+A: Dotkernel API, Dotkernel Admin, Dotkernel Queue, and the Core submodule.
+
+**Q: Do I need all four components to get started?**
+A: No, you can start with just Admin or just API and add the others as your requirements grow.
+
+**Q: How do multiple applications stay consistent with each other?**
+A: By sharing a Core submodule for entities and services, and by each bootstrapping through its own ConfigProvider.
+
+## Getting Started
+
+Before installing any Dotkernel application, make sure you have:
+
+- **PHP** – Dotkernel API and Admin require PHP 8.3, 8.4, or 8.5. Dotkernel Queue requires PHP 8.4 or 8.5.
+- **Composer** – used to install and manage dependencies for every Dotkernel application.
+- **A relational database** – API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database (the `utf8mb4_general_ci` collation is recommended).
+- **Git** – required if you plan to share code across applications via a Core submodule.
+
+### Installing Dotkernel API or Admin
+
+Both applications follow the same general installation pattern:
+
+1. Clone the application's repository into an empty project directory and install its dependencies with Composer.
+2. During installation, Composer may prompt you about registering additional ConfigProviders. Choose not to inject them — the application already includes the ConfigProviders it needs.
+3. Duplicate the distributed configuration files (for example the local and CORS configuration) into their local, non-versioned counterparts, and fill in your database connection parameters.
+4. Run the database migrations, and the fixtures if provided, to seed initial data.
+5. Enable development mode while you're building the application.
+
+> Dotkernel Admin ships with a default admin account for first login. Change its credentials before deploying to production.
+
+### Installing Dotkernel Queue
+
+Dotkernel Queue is set up separately from API and Admin, since it centers on asynchronous message processing rather than a database-backed admin interface. Refer to the official Dotkernel Queue documentation for its installation and message transport configuration steps.
+
+### FAQ
+
+**Q: What PHP version do I need?**
+A: PHP 8.3, 8.4, or 8.5 for Dotkernel API and Admin; PHP 8.4 or 8.5 for Dotkernel Queue.
+
+**Q: What database does Dotkernel use?**
+A: API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database.
+
+**Q: Why am I prompted about ConfigProviders during installation?**
+A: Composer may ask whether to inject additional ConfigProviders — decline, since the application's required ConfigProviders are already included.
+
+**Q: Do I need to configure anything before running the application for the first time?**
+A: Yes — duplicate the distributed local configuration files, fill in your database connection details, run migrations (and fixtures, if provided), and change any default credentials before production use.
+
+## API
+
+### Introduction
+
+Dotkernel API is a REST API based on the Mezzio skeleton. The API is the root of the Dotkernel Headless Platform.
+
+Dotkernel API:
+
+- Ensures that you build a cohesive system that contains an API-first backend with the same architecture and standards support as other Dotkernel tools and applications.
+- Has a PSR-Compliant Middleware Stack to promote a lean, modular architecture and create a common ground between components from various sources.
+- Implements [PSR-7](https://www.php-fig.org/psr/psr-7/) (HTTP message interfaces) and [PSR-15](https://www.php-fig.org/psr/psr-15/) (HTTP Server Request Handlers) as defined by the [PHP Framework Interop Group](https://www.php-fig.org/).
+
+#### FAQ
+
+**Q: What is Dotkernel API built on?**
+A: It's a REST API based on the Mezzio skeleton.
+
+**Q: What role does Dotkernel API play in the Headless Platform?**
+A: It is the root of the Dotkernel Headless Platform.
+
+**Q: What standards does Dotkernel API implement?**
+A: PSR-7 and PSR-15, as defined by the PHP Framework Interop Group (PHP-FIG).
+
+### Usage
+
+Dotkernel API can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements. Out of the box, API, Admin, and Queue are separate codebases designed to complement each other.
+
+A safe bet is to start with Dotkernel API and integrate it into your existing platform. The API can manage the access permissions to keep your data secure:
+
+- Admin-level users create and edit the data for your existing backend.
+- Regular users read the data for your frontend.
+
+Later on you can add:
+
+- Dotkernel Admin for its simple table-based approach, its reports and graphs.
+- Dotkernel Queue for its asynchronous task processing.
+
+#### FAQ
+
+**Q: Should I start with Dotkernel API or Admin?**
+A: Starting with Dotkernel API is a safe bet since it can manage access permissions to keep your data secure.
+
+**Q: How does Dotkernel API separate admin and regular users?**
+A: Admin-level users create and edit the data, while regular users read the data for your frontend.
+
+**Q: What can I add to Dotkernel API later?**
+A: Dotkernel Admin for its table-based management, reports and graphs, and Dotkernel Queue for asynchronous task processing.
+
+## Admin
+
+### Introduction
+
+Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
+
+Dotkernel Admin:
+
+- Is a fast and reliable way to manage records in your database with a simple table-based approach
+- Allows you to monitor your platform via its built-in reports and graphs.
+- Contains many graphical components to ensure an intuitive user experience.
+- Has a PSR-Compliant Middleware Stack to promote a lean, modular architecture and create a common ground between components from various sources.
+- Implements [PSR-7](https://www.php-fig.org/psr/psr-7/) (HTTP message interfaces) and [PSR-15](https://www.php-fig.org/psr/psr-15/) (HTTP Server Request Handlers) as defined by the [PHP Framework Interop Group](https://www.php-fig.org/).
+
+#### FAQ
+
+**Q: What is Dotkernel Admin?**
+A: It's a skeleton application for quickly setting up an administration site to manage records in your database.
+
+**Q: Does Dotkernel Admin include reporting features?**
+A: Yes, it has built-in reports and graphs to help you monitor your platform.
+
+**Q: What standards does Dotkernel Admin implement?**
+A: PSR-7 and PSR-15, as defined by the PHP Framework Interop Group (PHP-FIG).
+
+### Usage
+
+Dotkernel Admin can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements. Out of the box, Admin, API, and Queue are separate codebases designed to complement each other.
+
+You can start with Dotkernel Admin and integrate it into your existing platform. The Admin has built-in reports and graphs that can be configured and customized based on your needs.
+
+Later on you can add:
+
+- Dotkernel API to handle all data manipulation.
+- Dotkernel Queue for its asynchronous task processing.
+
+#### FAQ
+
+**Q: Can Dotkernel Admin be used on its own?**
+A: Yes, it can be installed independently and integrated into your existing platform.
+
+**Q: Are Dotkernel Admin, API, and Queue part of the same codebase?**
+A: No, out of the box they are separate codebases designed to complement each other.
+
+**Q: What do Dotkernel API and Dotkernel Queue add to Admin?**
+A: The API handles data manipulation for the platform, and Queue handles asynchronous task processing.
+
+## Queue
+
+### Introduction
+
+Dotkernel Queue is a standalone application (skeleton) for handling asynchronous task processing as its own microservice, separate from your API or Admin application.
+
+Dotkernel Queue:
+
+- Is built on the Mezzio microframework, sharing the same architecture and standards support as other Dotkernel tools and applications.
+- Uses Laminas Messenger to dispatch and handle messages, so work can be processed outside the request/response cycle.
+- Lets you offload slow or non-critical work — such as sending emails, generating exports, or processing uploads — from your API or Admin application.
+- Has a PSR-Compliant Middleware Stack to promote a lean, modular architecture and create a common ground between components from various sources.
+- Implements [PSR-7](https://www.php-fig.org/psr/psr-7/) (HTTP message interfaces) and [PSR-15](https://www.php-fig.org/psr/psr-15/) (HTTP Server Request Handlers) as defined by the [PHP Framework Interop Group](https://www.php-fig.org/).
+
+#### FAQ
+
+**Q: What is Dotkernel Queue?**
+A: A standalone microservice for processing asynchronous tasks, separate from your API or Admin application.
+
+**Q: What is Dotkernel Queue built on?**
+A: The Mezzio microframework, using Laminas Messenger to dispatch and handle messages.
+
+**Q: Why would I use Dotkernel Queue?**
+A: To offload slow or non-critical work, such as sending emails, generating exports, or processing uploads, so it doesn't block the request/response cycle.
+
+### Usage
+
+Dotkernel Queue can be installed independently or alongside other applications in the Dotkernel suite, based on your business requirements. Like API and Admin, it is a separate codebase designed to complement the others.
+
+Add Dotkernel Queue once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads. Your API or Admin application dispatches a message, and Queue processes it asynchronously in the background, independent of the request/response cycle.
+
+Because Queue is its own microservice, it can be deployed and scaled separately from API and Admin, and it can consume messages produced by either one.
+
+#### FAQ
+
+**Q: Can Dotkernel Queue be used on its own?**
+A: Yes, it can be installed independently, though it's most useful once another application (API or Admin) is producing messages for it to process.
+
+**Q: When should I add Dotkernel Queue to my platform?**
+A: Once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads.
+
+**Q: Can Dotkernel Queue be scaled independently of API and Admin?**
+A: Yes, since it's a separate microservice, it can be deployed and scaled on its own.
+
+## Core Submodule
+
+### Introduction
+
+The Core submodule is a common codebase set up to be used by the Dotkernel applications you added to your project. The project setup may differ - e.g. two APIs, one Admin, 3 Frontends - but the Core submodule can be included in all of them.
+
+By having a common module in your Dotkernel applications, you ensure that each of them uses entities and services in the same way. It helps to make service updates easier to sync across all the applications in your platform.
+
+General rules:
+
+- The golden rule for the Core codebase is that it is the only place which manages the database entities.
+- As much as possible, all Doctrine entities must reside in Core.
+- The current location of the Core submodule is `src/Core`.
+
+Further reading: [Shared Core Submodule in Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/shared-core-submodule-in-dotkernel-headless-platform/).
+
+#### FAQ
+
+**Q: Can the same Core submodule be used across multiple applications?**
+A: Yes, it can be included in any combination of APIs, Admins, and Frontends in your project.
+
+**Q: What is the golden rule for the Core codebase?**
+A: It's the only place that manages the database entities.
+
+**Q: Where is the Core submodule located?**
+A: At `src/Core`.
+
+### Benefits of the Core Submodule
+
+This design pattern ensures:
+
+- Design flexibility.
+- Scalability based on future requirements.
+- Consistent, enterprise-level growth, while also being suited for smaller applications.
+- The ability to split the work to multiple developers.
+- Easier bugfixes and onboarding.
+
+As your platform expands, each new application connects to the Dotkernel Headless Platform via the central API which services everything the other applications require. This ensures consistency throughout your platform, while allowing any number of outside connections as requirements arise.
+
+#### FAQ
+
+**Q: How does the Core submodule pattern help as a platform grows?**
+A: It provides design flexibility and scalability suited for both enterprise and smaller applications.
+
+**Q: Can multiple developers work on the platform using this pattern?**
+A: Yes, it allows splitting the work across multiple developers.
+
+**Q: How do new applications connect to the platform?**
+A: Each new application connects via the central API, which services everything the other applications require.
+
+### Creating a Core Submodule
+
+**Prerequisites** — before you begin, make sure you have:
+
+- Git installed locally.
+- An existing Core module in your application to convert (see the note below).
+- Push access to a new, empty Git repository that will hold the extracted Core code.
+
+The full steps for creating a submodule are described in [Git Tools – Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+> There is already a Core module in some of the Dotkernel applications, but it works like any other module (App, Page, or User). The Core modules are designed to be a starting point for the module's transformation into a Git submodule.
+
+First create a new Git repository that will contain the Core code.
+
+> If the existing Core folder already has commit history you want to keep, extract it with a history-preserving tool such as `git subtree split` before pushing to the new repository. Simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.
+
+To create the submodule in an application, you need to have Git create the `.gitmodules` file in the root of the main repository by running the command below. Use the url from the new repository you just created instead of `<url>`:
+
+```shell
+git submodule add <url>
+```
+
+> You can have multiple submodules, but for this tutorial we will only create the Core submodule.
+
+The `.gitmodules` file maps the submodules and its corresponding local directory within the main project (e.g. `src/Core`). This allows Git to manage the submodule correctly, from cloning, to updating, to tracking its changes.
+
+> None of the Dotkernel applications have the .gitmodules file out of the box. Only after isolating the Core into a Git submodule and pushing it to a separate Git repository does it become available to be included into any Dotkernel application.
+
+From now on, any changes to the Core submodule must be committed from within the Core folder, like for any other Git repository, using these commands (simplified version, provided as an example):
+
+```shell
+cd <path/to/submodule>
+git add .
+git commit -m "comment"
+git push
+```
+
+Whenever you clone the project, you simply need to `init` and `update` the submodule with these commands:
+
+```shell
+git submodule init
+git submodule update
+```
+
+> Do not forget to delete the existing Core module before adding the submodule to other applications.
+
+#### FAQ
+
+**Q: Where can I find the full steps for creating a Git submodule?**
+A: In the official Git documentation, [Git Tools – Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+**Q: What command creates a submodule in an application?**
+A: `git submodule add <url>`, using the URL of the new Core repository.
+
+**Q: How do I get the submodule after cloning the project?**
+A: Run `git submodule init` followed by `git submodule update`.
+
+**Q: Should I keep the existing Core module after adding the submodule?**
+A: No, delete the existing Core module before adding the submodule to other applications.
+
+**Q: Will I lose the Core folder's Git history when I create the submodule?**
+A: Yes, unless you extract it first with a history-preserving tool such as `git subtree split` — simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.
+
+### Using the Core Submodule
+
+Once the shared Core submodule is separated and imported into each application, your platform can look like the example below:
+
+- API + Core
+- Admin + Core
+- Queue + Core
+
+Each of these pairings lives in its own Git repository. Whenever work begins on a new feature or update, the devs should normally have the most recent Core in their development environment. In this example there are four codebases, kept in four separate repositories.
+
+The Dotkernel applications include various entities to get you started quickly. This is not a complete list, but it should help you understand what each application is aimed toward, for example:
+
+- **Admin** has admins, admin logins, and settings entities.
+- **API** has both users and admins, as well as authentication entities.
+
+There are already shared entities which are identical, so the best place for them is within the Core submodule. Whenever you create new shared code, you should add it in the Core submodule and make sure to keep it updated in all your applications.
+
+> This does not mean that all new code should be in Core, as there are plenty of instances when certain functionality is designed to be used by only one application.
+
+#### FAQ
+
+**Q: What does a platform using the Core submodule look like?**
+A: Each application (API, Admin, Queue) pairs with Core, with each box being a separate Git repository.
+
+**Q: Should all new code go into Core?**
+A: No, only shared code should go into Core — functionality used by only one application can stay in that application.
+
+**Q: What kinds of entities are already split between applications?**
+A: For example, Admin has admins, admin logins, and settings entities, while API has users, admins, and authentication entities.
+
+## ConfigProvider
+
+### Introduction
+
+In PHP, the `ConfigProvider` is a class that is part of an application's bootstrap process. It returns an array of configuration, settings, or anything else your application needs. In Dotkernel, each application module and package contains a `ConfigProvider` that normally returns:
+
+- Dependency injection mappings.
+- Request Handlers.
+- Template file paths.
+
+Here is an example in Dotkernel, which is an approach similar to Laminas/Mezzio:
+
+```php
+class ConfigProvider
+{
+    public function __invoke(): array
+    {
+        return [
+            'dependencies' => $this->getDependencies(),
+            'templates'    => $this->getTemplates(),
+        ];
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            'factories'  => [
+                Handler\HomepageHandler::class => Handler\HomepageHandlerFactory::class,
+                Handler\SearchHandler::class   => Handler\SearchHandlerFactory::class,
+            ],
+            'invokables' => [
+                Console\GenerateSearchData::class => Console\GenerateSearchData::class,
+           ],
+        ];
+    }
+
+    public function getTemplates(): array
+    {
+        return [
+            'app'   => [__DIR__ . '/../templates/app'],
+            'error' => [__DIR__ . '/../templates/error'],
+        ];
+    }
+}
+```
+
+All Dotkernel applications and packages use ConfigProviders:
+
+- [Dotkernel API](https://docs.dotkernel.org/api-documentation/)
+- [Dotkernel Admin](https://docs.dotkernel.org/admin-documentation/)
+- [Dotkernel Frontend](https://docs.dotkernel.org/frontend-documentation/)
+- [Dotkernel Light](https://docs.dotkernel.org/light-documentation/)
+- [Dotkernel Packages](https://docs.dotkernel.org/packages/)
+
+#### FAQ
+
+**Q: What does a ConfigProvider return in Dotkernel?**
+A: Dependency injection mappings, request handlers, and template file paths.
+
+**Q: Which Dotkernel applications use ConfigProviders?**
+A: Dotkernel API, Admin, Frontend, Light, and Packages all use ConfigProviders.
+
+**Q: Is the Dotkernel ConfigProvider approach specific to Dotkernel?**
+A: No, it follows an approach similar to Laminas/Mezzio.
+
+### How the ConfigProvider Works
+
+The ConfigProvider is automatically picked up by the framework during application bootstrap. Step by step:
+
+- **Merge the global configuration** - All ConfigProviders are merged into one array.
+- **Read the configuration array** - The call is similar to the below and expects an array of entries:
+
+```php
+$config = $container->get('config')['key'] ?? [];
+```
+
+- **Resolve item** - `$app->pipe()` is called to resolve one of the below instances:
+    - Resolve the service name from the container
+    - Wrap the middleware, if an array is provided
+    - Call the closure or invokable object.
+- **Handle errors** - This middleware is the last one in the pipeline to make sure it handles any exceptions.
+- **Execute at runtime** - [Laminas Stratigility](https://docs.laminas.dev/laminas-stratigility/) iterates over the pipeline in the order it was registered.
+    - Each middleware can **handle** the request and return a response, or **delegate** execution to the next middleware in the pipeline, until a `ResponseInterface` is returned to the client.
+
+This is how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.
+
+#### FAQ
+
+**Q: When is the ConfigProvider picked up?**
+A: Automatically, by the framework during application bootstrap.
+
+**Q: What happens during the "Resolve item" step?**
+A: `$app->pipe()` resolves a service name from the container, wraps a middleware array, or calls a closure/invokable object.
+
+**Q: Why does the error-handling middleware run last in the pipeline?**
+A: So it can catch any exceptions raised by the preceding middleware.
+
+### Benefits
+
+- **Centralized setup** – Instead of hardcoding bootstrap code, you declare it in a config provider so it's easy to read, change, or extend.
+- **Modular** – Each package can ship with its own config without interfering with others.
+- **Container-friendly** – It works well with frameworks using DI containers like Laminas ServiceManager, PHP-DI, or Pimple.
+- **Standardized service definitions** – It has consistent rules for object creation that are separate from business logic.
+- **Environment-agnostic** – It returns an array that defines dev, test, or prod environments.
+- **Testability** – The consistent, central configuration promotes isolated (e.g. per-module) testing, easier swapping of dependencies and the assertion of pipeline setup (e.g. check if a config key is present).
+
+> **Dotkernel ConfigProviders** have to be **added manually** in `config/config.php`, because all the initial ConfigProviders required to install the applications are already injected.
+
+#### FAQ
+
+**Q: Why use a ConfigProvider instead of hardcoding bootstrap code?**
+A: It centralizes configuration so it's easy to read, change, or extend.
+
+**Q: Does a ConfigProvider work with dependency injection containers?**
+A: Yes, it's container-friendly and works with DI containers like Laminas ServiceManager, PHP-DI, or Pimple.
+
+**Q: Do I need to register Dotkernel ConfigProviders manually?**
+A: Yes, Dotkernel ConfigProviders must be added manually in `config/config.php`.
+
+## Migration
+
+### Migrations
+
+When we talk about **migration**, we primarily refer to the **transfer of functionality** (the codebase) from one platform to another, more often from an older architecture like MVC, to a modern one like middleware. Still, a complex platform migration may include:
+
+- Replatforming - e.g. from on-premises to the cloud.
+- Refactoring - to improve readability, maintainability, and efficiency.
+- Database or storage migration - to improve execution time and/or security.
+
+The **migration of the software codebase** is the process of moving a software system's source code **to another environment**, which can involve:
+
+- Updating to a newer version of a language or framework.
+- Changing the infrastructure e.g. moving from SQL to NoSQL databases.
+- Replacing designs for security and compliance requirements.
+
+The process ensures that software is kept functional, compatible, and secure as the technology evolves. It is also the perfect opportunity to implement modern design patterns recommended by the development community.
+
+#### FAQ
+
+**Q: What does "migration" primarily refer to?**
+A: The transfer of functionality (the codebase) from one platform to another, e.g. from MVC to middleware.
+
+**Q: What else can a complex platform migration include?**
+A: Replatforming, refactoring, and database or storage migration.
+
+**Q: Why is migration a good opportunity beyond just moving code?**
+A: It's a chance to implement modern design patterns recommended by the development community.
+
+### Choosing a Migration Strategy
+
+The strategies below trade off risk, timeline, and cost differently:
+
+| | Full Rewrite | Modular Refactoring | Strangler Fig |
+|---|---|---|---|
+| Risk | High — no partial rollback | Moderate — contained to one module at a time once modularized | Low — each change is small and reversible |
+| Timeline | Long, with no value delivered until launch | Long upfront preparation, then incremental | Incremental, with continuous delivery |
+| Team size | Can be smaller, but works in isolation from the live system | Can scale across teams once modules are defined | Can be smaller, since work is isolated by feature |
+| Best suited for | Small or simple systems, or codebases too tightly coupled to migrate incrementally | Large, tightly coupled monoliths that need to be decomposed before migrating | Complex, business-critical legacy systems that can't tolerate downtime |
+
+As a general rule:
+
+- If the system is small enough, or too tightly coupled to touch incrementally, a **Full Rewrite** may be the only practical option, despite its cost and risk.
+- If the system is large but not yet split into independent parts, start with **Modular Refactoring** to establish clear module boundaries.
+- Once boundaries exist (either because the system already has them, or because you just created them through Modular Refactoring), use the **Strangler Fig Pattern** to migrate module by module with low risk and continuous delivery.
+
+In practice, Modular Refactoring and the Strangler Fig Pattern are often used together: refactor the monolith into modules first, then strangle each module into the new architecture one at a time.
+
+#### FAQ
+
+**Q: Which migration strategy has the lowest risk?**
+A: The Strangler Fig Pattern, since each change is small, reversible, and easy to test in isolation.
+
+**Q: When does a Full Rewrite make sense?**
+A: Mainly for small or simple systems, or when the existing codebase is too tightly coupled for an incremental migration to be practical.
+
+**Q: How do Modular Refactoring and the Strangler Fig Pattern relate?**
+A: Modular Refactoring prepares a large, tightly coupled codebase for migration by breaking it into modules; the Strangler Fig Pattern is then typically used to carry out the actual migration, module by module.
+
+### Full Rewrite or Big Bang Rewrite
+
+**Definition:** A full rewrite is a software migration strategy that implies completely rebuilding the system from scratch in the new architecture or technology.
+
+**How it works:**
+
+- You keep the old application in use, as-is.
+- In parallel, you work with the development team to build a new version of the application in the target environment.
+- Once the new application is complete and tested, you redirect all execution to the new application.
+- You decommission the old application.
+
+**Pluses:**
+
+- Blank slate – No technical debt is carried over to the new application.
+- Optimal architecture – You can code the new application without worrying about legacy code or outdated design patterns.
+- Better maintainability and security – The new code can follow modern best practices which may be incompatible with the old code.
+
+**Minuses:**
+
+- High risk – Your release must work on the first try, there's no partial rollback.
+- Long timeline – There is no immediate user value during development.
+- Expensive – Building a second product in parallel may prove to be just as costly as the original product.
+- Feature drift – Since the old application is still running, any updates performed on it may cause further delay on the development of the new one and greater mismatching of business logic.
+
+**Conclusion:** Performing a full rewrite is no easy choice. More often than not, the costs are the main reason you would not choose this migration strategy. You may find yourself delaying its implementation until you are forced to do so by circumstance.
+
+#### FAQ
+
+**Q: What is a Full Rewrite migration strategy?**
+A: Completely rebuilding the system from scratch in the new architecture or technology.
+
+**Q: What is the biggest risk of a full rewrite?**
+A: High risk — the release must work on the first try, with no partial rollback.
+
+**Q: Why might a full rewrite be expensive?**
+A: Building a second product in parallel can prove just as costly as the original product.
+
+### Modular Refactoring
+
+**Definition:** Modular Refactoring is a migration strategy where you break a large, tightly coupled codebase into smaller, independent modules. Once the modules are defined, you begin the migration to the new architecture.
+
+**How it works:**
+
+- Identify logical boundaries in the business logic. Search for sections of code that can function independently.
+- Decouple dependencies. Refactor code to reduce direct cross-module calls, often introducing interfaces or APIs for communication.
+- Isolate each module. Ensure each module can be built, tested, and deployed separately.
+- Migrate module-by-module. Move one module at a time to the new architecture, integrate it back into the system, and test its functionality before moving on.
+
+**Pluses:**
+
+- Controlled scope – Each migration step is focused on one module.
+- Improved maintainability – As the migration progresses, the system becomes cleaner and more modular.
+- Enables parallel work – You can assign different development teams to migrate different modules at the same time.
+- Lower risk – If a migration fails, only one part of the system is affected.
+
+**Minuses:**
+
+- Refactoring cost – Breaking a monolith into modules takes time and effort.
+- Possible temporary slowdown – You may need to allocate resources from new feature development to the refactoring effort.
+- Requires strong design discipline – You need to carefully plan modules to avoid repeated rework.
+
+**Conclusion:** Modular Refactoring implies a great deal of preparation (proportional to the complexity of the application) before the migration takes place. You take the existing monolith and reorganize it into clearly defined modules, while in the same repository. You can then extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code. For the actual code migration, you can opt for the Strangler Fig Pattern.
+
+#### FAQ
+
+**Q: What is Modular Refactoring?**
+A: Breaking a large, tightly coupled codebase into smaller, independent modules before migrating them.
+
+**Q: Can teams work on Modular Refactoring in parallel?**
+A: Yes, it enables parallel work — different teams can migrate different modules at the same time.
+
+**Q: What pattern is recommended for the actual code migration after modularizing?**
+A: The Strangler Fig Pattern.
+
+### Strangler Fig Pattern or Incremental Migration
+
+**Definition:** The Strangler Fig Pattern is a software migration strategy that implies gradually replacing parts of the old application with new components until the old application is not needed any more.
+
+**How it works:**
+
+- Wrap the old application with a routing layer that enables you to selectively redirect incoming requests to either the old code or to new code.
+- Choose an existing feature or service and build it in the new architecture. This applies to new features, as well.
+- Replace old features as they are ready to be deployed. After development and testing is complete on the new code, reroute traffic for that feature or service to the new code.
+- Decommission the old application. Once all features and/or services are migrated, you can shut down the legacy code completely.
+
+**Pluses:**
+
+- Lower risk – Each change is small, and thus easier to manage and test.
+- Continuous delivery – Users and stakeholders see improvements throughout the development process.
+- Easier rollback – If the new code doesn't work as intended, reroute traffic back to the old code until the new one is revised.
+- Better learning – You discover and fix problems early, adapt your plan more dynamically, and understand the business logic better.
+
+**Conclusion:** The Strangler Fig Pattern is the recommended way to go for legacy applications, especially complex ones where a full rewrite would take years and/or millions of dollars. You mitigate downtime and risk by handling small, easily manageable sections of code at any given time. One restriction for this pattern is that you need to be able to intercept requests and redirect execution. The development team can be smaller (since you isolate sections of code you work on) and the development schedule is more adaptable (you can stop at any time because the old application is always there).
+
+#### FAQ
+
+**Q: What is the Strangler Fig Pattern?**
+A: A migration strategy that gradually replaces parts of the old application with new components until the old one is no longer needed.
+
+**Q: What must be in place for the Strangler Fig Pattern to work?**
+A: The ability to intercept requests and redirect execution via a routing layer.
+
+**Q: Why is this pattern recommended for complex legacy applications?**
+A: It mitigates downtime and risk by handling small, manageable sections of code at a time.
+
+## Glossary
+
+Plain-language definitions for the standards, frameworks, and terms used throughout this documentation.
+
+**ConfigProvider** — A PHP class, part of an application's bootstrap process, that returns an array of configuration such as dependency injection mappings, request handlers, and template paths. See the ConfigProvider section above.
+
+**Core submodule** — The shared codebase, included as a Git submodule, that centralizes database entities and services across the Dotkernel applications in your platform. See the Core Submodule section above.
+
+**Dependency injection (DI) container** — A framework component (e.g. Laminas ServiceManager, PHP-DI, Pimple) that creates and wires together an application's objects based on configuration, instead of that wiring being hardcoded.
+
+**Doctrine** — The object-relational mapper (ORM) Dotkernel API and Admin use to manage database entities against a relational database such as MariaDB or MySQL.
+
+**Git submodule** — A Git feature that lets one repository include another repository at a fixed path, so shared code (like the Core submodule) can be versioned and updated independently of the applications that include it. See "Creating a Core Submodule" above.
+
+**Headless Platform** — An architecture that decouples the user interface (frontend) from the backend services, so the backend's responses can be consumed by any number of other systems, such as websites or mobile apps. See the Introduction section above.
+
+**Mezzio** — The PHP micro-framework, part of the Laminas project, that Dotkernel API, Admin, and Queue are all built on.
+
+**Middleware** — A unit of code that sits in a request/response pipeline, able to handle a request and return a response, or delegate to the next middleware in line. Dotkernel applications use a PSR-Compliant Middleware Stack for this.
+
+**Monolith** — A single, tightly coupled codebase where features aren't separated into independent modules — the usual starting point for a Modular Refactoring.
+
+**PHP-FIG** — The PHP Framework Interop Group, the organization behind the PSR (PHP Standard Recommendation) specifications, including PSR-7 and PSR-15.
+
+**PSR-7** — The PSR specification defining HTTP message interfaces (requests and responses) in PHP.
+
+**PSR-15** — The PSR specification defining HTTP server request handlers and middleware interfaces in PHP.
+
+**Replatforming** — Moving a software system to a new infrastructure or environment — for example, from on-premises servers to the cloud — as part of a broader migration.
+
+**Stratigility** — The Laminas library that implements the middleware pipeline Mezzio applications run on, iterating over registered middleware in order until a response is returned. See "How the ConfigProvider Works" above.

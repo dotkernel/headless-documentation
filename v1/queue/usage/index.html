@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/core/creation/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/queue/usage/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Creation - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>Usage - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -172,12 +172,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Core</li>
+                                <li class="breadcrumb-item">Queue</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Creation</li>
+                    <li class="breadcrumb-item active" aria-current="page">Usage</li>
                 
             
         </ol>
@@ -311,13 +311,13 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../queue/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../queue/usage/" class="subnavigation__link">Usage</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Usage</a>
 </li>
 
         
@@ -345,25 +345,25 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Creation</a>
+    <a href="../../core/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../usage/" class="subnavigation__link">Usage</a>
+    <a href="../../core/creation/" class="subnavigation__link">Creation</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../benefits/" class="subnavigation__link">Benefits</a>
+    <a href="../../core/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/benefits/" class="subnavigation__link">Benefits</a>
 </li>
 
         
@@ -522,11 +522,7 @@
                 </li>
             
                 <li class="toc__entry">
-                    <a href="#prerequisites" class="toc__link nav-link">Prerequisites</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#instructions" class="toc__link nav-link">Instructions</a>
+                    <a href="#details" class="toc__link nav-link">Details</a>
                 </li>
             
                 <li class="toc__entry">
@@ -552,68 +548,30 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Core</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Queue</h2>-->
     
 
-    <h1 id="creating-a-core-submodule">Creating a Core Submodule</h1>
+    <h1 id="usage">Usage</h1>
 <h2 id="summary">Summary</h2>
-<p>A step-by-step guide to turning the Core module into a Git submodule, including adding, committing, and initializing/updating it.</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Before you begin, make sure you have:</p>
-<ul>
-<li>Git installed locally.</li>
-<li>An existing Core module in your application to convert (see the note below).</li>
-<li>Push access to a new, empty Git repository that will hold the extracted Core code.</li>
-</ul>
-<h2 id="instructions">Instructions</h2>
-<p>The full steps for creating a submodule are described in <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git Tools – Submodules</a>.</p>
-<blockquote>
-<p>There is already a Core module in some of the Dotkernel applications, but it works like any other module (App, Page, or User).
-The Core modules are designed to be a starting point for the module’s transformation into a Git submodule.</p>
-</blockquote>
-<p>First create a new Git repository that will contain the Core code.</p>
-<blockquote>
-<p>If the existing Core folder already has commit history you want to keep, extract it with a history-preserving tool such as <code>git subtree split</code> before pushing to the new repository.
-Simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.</p>
-</blockquote>
-<p>To create the submodule in an application, you need to have Git create the <code>.gitmodules</code> file in the root of the main repository by running the command below.
-Use the url from the new repository you just created instead of <code>&lt;url&gt;</code>:</p>
-<pre class="highlight"><code class="language-shell">git submodule add &lt;url&gt;</code></pre>
-<blockquote>
-<p>You can have multiple submodules, but for this tutorial we will only create the Core submodule.</p>
-</blockquote>
-<p>The <code>.gitmodules</code> file maps the submodules and its corresponding local directory within the main project (e.g. <code>src/Core</code>).
-This allows Git to manage the submodule correctly, from cloning, to updating, to tracking its changes.</p>
-<blockquote>
-<p>None of the Dotkernel applications have the .gitmodules file out of the box.
-Only after isolating the Core into a Git submodule and pushing it to a separate Git repository does it become available to be included into any Dotkernel application.</p>
-</blockquote>
-<p>From now on, any changes to the Core submodule must be committed from within the Core folder, like for any other Git repository, using these commands (simplified version, provided as an example):</p>
-<pre class="highlight"><code class="language-shell">cd &lt;path/to/submodule&gt;
-git add .
-git commit -m "comment"
-git push</code></pre>
-<p>Whenever you clone the project, you simply need to <code>init</code> and <code>update</code> the submodule with these commands:</p>
-<pre class="highlight"><code class="language-shell">git submodule init
-git submodule update</code></pre>
-<blockquote>
-<p>Do not forget to delete the existing Core module before adding the submodule to other applications.</p>
-</blockquote>
+<p>Explains how Dotkernel Queue fits alongside Dotkernel API and Dotkernel Admin, and when to add it to your platform.</p>
+<h2 id="details">Details</h2>
+<p>Dotkernel Queue can be installed independently or alongside other applications in the Dotkernel suite, based on your business requirements.
+Like API and Admin, it is a separate codebase designed to complement the others — see the <a href="../../architecture/">Architecture Overview</a> for how the three fit together.</p>
+<p>Add Dotkernel Queue once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads.
+Your API or Admin application dispatches a message, and Queue processes it asynchronously in the background, independent of the request/response cycle.</p>
+<p>Because Queue is its own microservice, it can be deployed and scaled separately from API and Admin, and it can consume messages produced by either one.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: Where can I find the full steps for creating a Git submodule?</strong>
-A: In the official Git documentation, <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git Tools – Submodules</a>.</p>
-<p><strong>Q: What command creates a submodule in an application?</strong>
-A: <code>git submodule add &lt;url&gt;</code>, using the URL of the new Core repository.</p>
-<p><strong>Q: How do I get the submodule after cloning the project?</strong>
-A: Run <code>git submodule init</code> followed by <code>git submodule update</code>.</p>
-<p><strong>Q: Should I keep the existing Core module after adding the submodule?</strong>
-A: No, delete the existing Core module before adding the submodule to other applications.</p>
-<p><strong>Q: Will I lose the Core folder's Git history when I create the submodule?</strong>
-A: Yes, unless you extract it first with a history-preserving tool such as <code>git subtree split</code> — simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.</p>
+<p><strong>Q: Can Dotkernel Queue be used on its own?</strong>
+A: Yes, it can be installed independently, though it's most useful once another application (API or Admin) is producing messages for it to process.</p>
+<p><strong>Q: When should I add Dotkernel Queue to my platform?</strong>
+A: Once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads.</p>
+<p><strong>Q: Can Dotkernel Queue be scaled independently of API and Admin?</strong>
+A: Yes, since it's a separate microservice, it can be deployed and scaled on its own.</p>
 <h2 id="see-also">See also</h2>
 <ul>
-<li><a href="../introduction/">Introduction</a></li>
-<li><a href="../usage/">Using the Core Submodule</a></li>
+<li><a href="../../api/usage/">Dotkernel API: Usage</a></li>
+<li><a href="../../admin/usage/">Dotkernel Admin: Usage</a></li>
+<li><a href="../../architecture/">Architecture Overview</a></li>
 </ul>
 
 
@@ -634,8 +592,8 @@ A: Yes, unless you extract it first with a history-preserving tool such as <code
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../usage/">
-                    Usage
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../core/introduction/">
+                    Introduction
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

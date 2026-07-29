@@ -210,6 +210,18 @@
 
                     
                         
+<li class="subnavigation__list-item ">
+    <a href="../../architecture/" class="subnavigation__link">Architecture Overview</a>
+</li>
+
+                    
+                        
+<li class="subnavigation__list-item ">
+    <a href="../../getting-started/" class="subnavigation__link">Getting Started</a>
+</li>
+
+                    
+                        
 
 
 
@@ -270,6 +282,42 @@
         
 <li class="subnavigation__list-item subnavigation__list-item--active">
     <a href="./" class="subnavigation__link">Usage</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#queue" role="button" aria-expanded="false" aria-controls="queue">
+        <span class="subnavigation__headline">Queue</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="queue">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../queue/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../queue/usage/" class="subnavigation__link">Usage</a>
 </li>
 
         
@@ -383,6 +431,74 @@
 </li>
 
                     
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#migration" role="button" aria-expanded="false" aria-controls="migration">
+        <span class="subnavigation__headline">Migration</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="migration">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/choosing-a-strategy/" class="subnavigation__link">Choosing a Strategy</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/full-rewrite/" class="subnavigation__link">Full Rewrite</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/modular-refactoring/" class="subnavigation__link">Modular Refactoring</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/strangler-fig/" class="subnavigation__link">Strangler Fig</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+<li class="subnavigation__list-item ">
+    <a href="../../glossary/" class="subnavigation__link">Glossary</a>
+</li>
+
+                    
                 
             
         </ul>
@@ -396,6 +512,29 @@
     
 
     
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#summary" class="toc__link nav-link">Summary</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#details" class="toc__link nav-link">Details</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#faq" class="toc__link nav-link">FAQ</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#see-also" class="toc__link nav-link">See also</a>
+                </li>
+            
+            </ul>
+        </div>
     
 
                     
@@ -413,19 +552,30 @@
     
 
     <h1 id="usage">Usage</h1>
+<h2 id="summary">Summary</h2>
+<p>Explains how Dotkernel Admin fits alongside Dotkernel API and Dotkernel Queue, and how you can start with Admin alone and add the other components later.</p>
+<h2 id="details">Details</h2>
 <p>Dotkernel Admin can be installed independently or together with other applications in the Dotkernel suite, based on your business requirements.
-These components are designed to complement each other (out-of-box they are separate codebases):</p>
-<ul>
-<li><strong>Dotkernel API</strong> exposes the content to 3rd-party frontends or backends.</li>
-<li><strong>Dotkernel Admin</strong> (optional) manages the data (create, edit, delete).</li>
-<li><strong>Dotkernel Queue</strong> (optional) queue management microservice.</li>
-</ul>
+Out of the box, Admin, API, and Queue are separate codebases designed to complement each other — see the <a href="../../architecture/">Architecture Overview</a> for how they fit together.</p>
 <p>You can start with Dotkernel Admin and integrate it into your existing platform.
 The Admin has built-in reports and graphs that can be configured and customized based on your needs.</p>
 <p>Later on you can add:</p>
 <ul>
 <li>Dotkernel API to handle all data manipulation.</li>
 <li>Dotkernel Queue for its asynchronous task processing.</li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<p><strong>Q: Can Dotkernel Admin be used on its own?</strong>
+A: Yes, it can be installed independently and integrated into your existing platform.</p>
+<p><strong>Q: Are Dotkernel Admin, API, and Queue part of the same codebase?</strong>
+A: No, out of the box they are separate codebases designed to complement each other.</p>
+<p><strong>Q: What do Dotkernel API and Dotkernel Queue add to Admin?</strong>
+A: The API handles data manipulation for the platform, and Queue handles asynchronous task processing.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../../api/usage/">Dotkernel API: Usage</a></li>
+<li><a href="../../queue/usage/">Dotkernel Queue: Usage</a></li>
+<li><a href="../../architecture/">Architecture Overview</a></li>
 </ul>
 
 
@@ -446,7 +596,7 @@ The Admin has built-in reports and graphs that can be configured and customized 
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../../core/introduction/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../queue/introduction/">
                     Introduction
                     <i class="bi bi-chevron-right"></i>
                 </a>

@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/core/creation/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/migration/choosing-a-strategy/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Creation - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>Choosing a Strategy - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -172,12 +172,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Core</li>
+                                <li class="breadcrumb-item">Migration</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Creation</li>
+                    <li class="breadcrumb-item active" aria-current="page">Choosing a Strategy</li>
                 
             
         </ol>
@@ -345,25 +345,25 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Creation</a>
+    <a href="../../core/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../usage/" class="subnavigation__link">Usage</a>
+    <a href="../../core/creation/" class="subnavigation__link">Creation</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../benefits/" class="subnavigation__link">Benefits</a>
+    <a href="../../core/usage/" class="subnavigation__link">Usage</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../core/benefits/" class="subnavigation__link">Benefits</a>
 </li>
 
         
@@ -461,31 +461,31 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../migration/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Choosing a Strategy</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../migration/choosing-a-strategy/" class="subnavigation__link">Choosing a Strategy</a>
+    <a href="../full-rewrite/" class="subnavigation__link">Full Rewrite</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../migration/full-rewrite/" class="subnavigation__link">Full Rewrite</a>
+    <a href="../modular-refactoring/" class="subnavigation__link">Modular Refactoring</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../migration/modular-refactoring/" class="subnavigation__link">Modular Refactoring</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../migration/strangler-fig/" class="subnavigation__link">Strangler Fig</a>
+    <a href="../strangler-fig/" class="subnavigation__link">Strangler Fig</a>
 </li>
 
         
@@ -522,19 +522,11 @@
                 </li>
             
                 <li class="toc__entry">
-                    <a href="#prerequisites" class="toc__link nav-link">Prerequisites</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#instructions" class="toc__link nav-link">Instructions</a>
+                    <a href="#details" class="toc__link nav-link">Details</a>
                 </li>
             
                 <li class="toc__entry">
                     <a href="#faq" class="toc__link nav-link">FAQ</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#see-also" class="toc__link nav-link">See also</a>
                 </li>
             
             </ul>
@@ -552,69 +544,64 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Core</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Migration</h2>-->
     
 
-    <h1 id="creating-a-core-submodule">Creating a Core Submodule</h1>
+    <h1 id="choosing-a-migration-strategy">Choosing a Migration Strategy</h1>
 <h2 id="summary">Summary</h2>
-<p>A step-by-step guide to turning the Core module into a Git submodule, including adding, committing, and initializing/updating it.</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Before you begin, make sure you have:</p>
+<p>A decision guide comparing the Full Rewrite, Modular Refactoring, and Strangler Fig migration strategies, to help you pick the right one for your situation.</p>
+<h2 id="details">Details</h2>
+<p>Each <a href="../introduction/">migration strategy</a> documented in this section trades off risk, timeline, and cost differently:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th></th>
+<th><a href="../full-rewrite/">Full Rewrite</a></th>
+<th><a href="../modular-refactoring/">Modular Refactoring</a></th>
+<th><a href="../strangler-fig/">Strangler Fig</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Risk</td>
+<td>High — no partial rollback</td>
+<td>Moderate — contained to one module at a time once modularized</td>
+<td>Low — each change is small and reversible</td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td>Long, with no value delivered until launch</td>
+<td>Long upfront preparation, then incremental</td>
+<td>Incremental, with continuous delivery</td>
+</tr>
+<tr>
+<td>Team size</td>
+<td>Can be smaller, but works in isolation from the live system</td>
+<td>Can scale across teams once modules are defined</td>
+<td>Can be smaller, since work is isolated by feature</td>
+</tr>
+<tr>
+<td>Best suited for</td>
+<td>Small or simple systems, or codebases too tightly coupled to migrate incrementally</td>
+<td>Large, tightly coupled monoliths that need to be decomposed before migrating</td>
+<td>Complex, business-critical legacy systems that can't tolerate downtime</td>
+</tr>
+</tbody>
+</table></div>
+<p>As a general rule:</p>
 <ul>
-<li>Git installed locally.</li>
-<li>An existing Core module in your application to convert (see the note below).</li>
-<li>Push access to a new, empty Git repository that will hold the extracted Core code.</li>
+<li>If the system is small enough, or too tightly coupled to touch incrementally, a <strong>Full Rewrite</strong> may be the only practical option, despite its cost and risk.</li>
+<li>If the system is large but not yet split into independent parts, start with <strong>Modular Refactoring</strong> to establish clear module boundaries.</li>
+<li>Once boundaries exist (either because the system already has them, or because you just created them through Modular Refactoring), use the <strong>Strangler Fig Pattern</strong> to migrate module by module with low risk and continuous delivery.</li>
 </ul>
-<h2 id="instructions">Instructions</h2>
-<p>The full steps for creating a submodule are described in <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git Tools – Submodules</a>.</p>
-<blockquote>
-<p>There is already a Core module in some of the Dotkernel applications, but it works like any other module (App, Page, or User).
-The Core modules are designed to be a starting point for the module’s transformation into a Git submodule.</p>
-</blockquote>
-<p>First create a new Git repository that will contain the Core code.</p>
-<blockquote>
-<p>If the existing Core folder already has commit history you want to keep, extract it with a history-preserving tool such as <code>git subtree split</code> before pushing to the new repository.
-Simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.</p>
-</blockquote>
-<p>To create the submodule in an application, you need to have Git create the <code>.gitmodules</code> file in the root of the main repository by running the command below.
-Use the url from the new repository you just created instead of <code>&lt;url&gt;</code>:</p>
-<pre class="highlight"><code class="language-shell">git submodule add &lt;url&gt;</code></pre>
-<blockquote>
-<p>You can have multiple submodules, but for this tutorial we will only create the Core submodule.</p>
-</blockquote>
-<p>The <code>.gitmodules</code> file maps the submodules and its corresponding local directory within the main project (e.g. <code>src/Core</code>).
-This allows Git to manage the submodule correctly, from cloning, to updating, to tracking its changes.</p>
-<blockquote>
-<p>None of the Dotkernel applications have the .gitmodules file out of the box.
-Only after isolating the Core into a Git submodule and pushing it to a separate Git repository does it become available to be included into any Dotkernel application.</p>
-</blockquote>
-<p>From now on, any changes to the Core submodule must be committed from within the Core folder, like for any other Git repository, using these commands (simplified version, provided as an example):</p>
-<pre class="highlight"><code class="language-shell">cd &lt;path/to/submodule&gt;
-git add .
-git commit -m "comment"
-git push</code></pre>
-<p>Whenever you clone the project, you simply need to <code>init</code> and <code>update</code> the submodule with these commands:</p>
-<pre class="highlight"><code class="language-shell">git submodule init
-git submodule update</code></pre>
-<blockquote>
-<p>Do not forget to delete the existing Core module before adding the submodule to other applications.</p>
-</blockquote>
+<p>In practice, Modular Refactoring and the Strangler Fig Pattern are often used together: refactor the monolith into modules first, then strangle each module into the new architecture one at a time.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: Where can I find the full steps for creating a Git submodule?</strong>
-A: In the official Git documentation, <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git Tools – Submodules</a>.</p>
-<p><strong>Q: What command creates a submodule in an application?</strong>
-A: <code>git submodule add &lt;url&gt;</code>, using the URL of the new Core repository.</p>
-<p><strong>Q: How do I get the submodule after cloning the project?</strong>
-A: Run <code>git submodule init</code> followed by <code>git submodule update</code>.</p>
-<p><strong>Q: Should I keep the existing Core module after adding the submodule?</strong>
-A: No, delete the existing Core module before adding the submodule to other applications.</p>
-<p><strong>Q: Will I lose the Core folder's Git history when I create the submodule?</strong>
-A: Yes, unless you extract it first with a history-preserving tool such as <code>git subtree split</code> — simply creating an empty repository and adding it as a submodule does not carry over the folder's original history.</p>
-<h2 id="see-also">See also</h2>
-<ul>
-<li><a href="../introduction/">Introduction</a></li>
-<li><a href="../usage/">Using the Core Submodule</a></li>
-</ul>
+<p><strong>Q: Which migration strategy has the lowest risk?</strong>
+A: The Strangler Fig Pattern, since each change is small, reversible, and easy to test in isolation.</p>
+<p><strong>Q: When does a Full Rewrite make sense?</strong>
+A: Mainly for small or simple systems, or when the existing codebase is too tightly coupled for an incremental migration to be practical.</p>
+<p><strong>Q: How do Modular Refactoring and the Strangler Fig Pattern relate?</strong>
+A: Modular Refactoring prepares a large, tightly coupled codebase for migration by breaking it into modules; the Strangler Fig Pattern is then typically used to carry out the actual migration, module by module.</p>
 
 
 
@@ -634,8 +621,8 @@ A: Yes, unless you extract it first with a history-preserving tool such as <code
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../usage/">
-                    Usage
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../full-rewrite/">
+                    Full Rewrite
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
