@@ -561,12 +561,12 @@ Like API and Admin, it is a separate codebase designed to complement the others 
 Your API or Admin application dispatches a message, and Queue processes it asynchronously in the background, independent of the request/response cycle.</p>
 <p>Because Queue is its own microservice, it can be deployed and scaled separately from API and Admin, and it can consume messages produced by either one.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: Can Dotkernel Queue be used on its own?</strong>
-A: Yes, it can be installed independently, though it's most useful once another application (API or Admin) is producing messages for it to process.</p>
-<p><strong>Q: When should I add Dotkernel Queue to my platform?</strong>
-A: Once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads.</p>
-<p><strong>Q: Can Dotkernel Queue be scaled independently of API and Admin?</strong>
-A: Yes, since it's a separate microservice, it can be deployed and scaled on its own.</p>
+<p><strong>Q: Can Dotkernel Queue be used on its own?</strong></p>
+<p>A: Yes, it can be installed independently, though it's most useful once another application (API or Admin) is producing messages for it to process.</p>
+<p><strong>Q: When should I add Dotkernel Queue to my platform?</strong></p>
+<p>A: Once you have work that shouldn't run inline with a request, such as sending bulk emails, generating reports, or processing uploads.</p>
+<p><strong>Q: Can Dotkernel Queue be scaled independently of API and Admin?</strong></p>
+<p>A: Yes, since it's a separate microservice, it can be deployed and scaled on its own.</p>
 <h2 id="see-also">See also</h2>
 <ul>
 <li><a href="../../api/usage/">Dotkernel API: Usage</a></li>

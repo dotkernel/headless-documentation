@@ -578,12 +578,12 @@ Let's look at it step by step:</p>
 <p>Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.</p>
 <p><img alt="Diagram of Mezzio and Dotkernel merging ConfigProviders into the middleware pipeline" src="https://docs.dotkernel.org/img/headless-platform/ConfigProvider.png" class="img-responsive"/></p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: When is the ConfigProvider picked up?</strong>
-A: Automatically, by the framework during application bootstrap.</p>
-<p><strong>Q: What happens during the "Resolve item" step?</strong>
-A: <code>$app-&gt;pipe()</code> resolves a service name from the container, wraps a middleware array, or calls a closure/invokable object.</p>
-<p><strong>Q: Why does the error-handling middleware run last in the pipeline?</strong>
-A: So it can catch any exceptions raised by the preceding middleware.</p>
+<p><strong>Q: When is the ConfigProvider picked up?</strong></p>
+<p>A: Automatically, by the framework during application bootstrap.</p>
+<p><strong>Q: What happens during the "Resolve item" step?</strong></p>
+<p>A: <code>$app-&gt;pipe()</code> resolves a service name from the container, wraps a middleware array, or calls a closure/invokable object.</p>
+<p><strong>Q: Why does the error-handling middleware run last in the pipeline?</strong></p>
+<p>A: So it can catch any exceptions raised by the preceding middleware.</p>
 <h2 id="see-also">See also</h2>
 <ul>
 <li><a href="../introduction/">Introduction</a></li>

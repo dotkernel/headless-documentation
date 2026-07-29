@@ -568,14 +568,14 @@ Change its credentials before deploying to production.</p>
 <p>Dotkernel Queue is set up separately from API and Admin, since it centers on asynchronous message processing rather than a database-backed admin interface.
 Refer to the official Dotkernel Queue documentation for its installation and message transport configuration steps.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: What PHP version do I need?</strong>
-A: PHP 8.3, 8.4, or 8.5 for Dotkernel API and Admin; PHP 8.4 or 8.5 for Dotkernel Queue.</p>
-<p><strong>Q: What database does Dotkernel use?</strong>
-A: API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database.</p>
-<p><strong>Q: Why am I prompted about ConfigProviders during installation?</strong>
-A: Composer may ask whether to inject additional ConfigProviders — decline, since the application's required ConfigProviders are already included.</p>
-<p><strong>Q: Do I need to configure anything before running the application for the first time?</strong>
-A: Yes — duplicate the distributed local configuration files, fill in your database connection details, run migrations (and fixtures, if provided), and change any default credentials before production use.</p>
+<p><strong>Q: What PHP version do I need?</strong></p>
+<p>A: PHP 8.3, 8.4, or 8.5 for Dotkernel API and Admin; PHP 8.4 or 8.5 for Dotkernel Queue.</p>
+<p><strong>Q: What database does Dotkernel use?</strong></p>
+<p>A: API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database.</p>
+<p><strong>Q: Why am I prompted about ConfigProviders during installation?</strong></p>
+<p>A: Composer may ask whether to inject additional ConfigProviders — decline, since the application's required ConfigProviders are already included.</p>
+<p><strong>Q: Do I need to configure anything before running the application for the first time?</strong></p>
+<p>A: Yes — duplicate the distributed local configuration files, fill in your database connection details, run migrations (and fixtures, if provided), and change any default credentials before production use.</p>
 
 
 

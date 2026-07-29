@@ -555,12 +555,12 @@ You can begin with <a href="../admin/usage/">just Admin</a> or <a href="../api/u
 Once you're running more than one application, pull the shared logic out into a <a href="../core/creation/">Core submodule</a> and include it in each one — a typical setup looks like API + Core, Admin + Core, and Queue + Core, each in its own repository, all reading from the same shared entities and services (see <a href="../core/usage/">Using the Core Submodule</a>).</p>
 <p>Regardless of which pieces you use, every Dotkernel application and package boots the same way: through a <a href="../config-provider/introduction/">ConfigProvider</a> that declares its dependencies, handlers, and configuration, merged together by the framework at <a href="../config-provider/functionality/">bootstrap time</a>.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: What are the building blocks of the Dotkernel Headless Platform?</strong>
-A: Dotkernel API, Dotkernel Admin, Dotkernel Queue, and the Core submodule.</p>
-<p><strong>Q: Do I need all four components to get started?</strong>
-A: No, you can start with just Admin or just API and add the others as your requirements grow.</p>
-<p><strong>Q: How do multiple applications stay consistent with each other?</strong>
-A: By sharing a Core submodule for entities and services, and by each bootstrapping through its own ConfigProvider.</p>
+<p><strong>Q: What are the building blocks of the Dotkernel Headless Platform?</strong></p>
+<p>A: Dotkernel API, Dotkernel Admin, Dotkernel Queue, and the Core submodule.</p>
+<p><strong>Q: Do I need all four components to get started?</strong></p>
+<p>A: No, you can start with just Admin or just API and add the others as your requirements grow.</p>
+<p><strong>Q: How do multiple applications stay consistent with each other?</strong></p>
+<p>A: By sharing a Core submodule for entities and services, and by each bootstrapping through its own ConfigProvider.</p>
 
 
 
