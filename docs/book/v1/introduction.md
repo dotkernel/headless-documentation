@@ -21,12 +21,15 @@ Here are some advantages of the Headless Platform:
 ## FAQ
 
 **Q: What is the core principle of a Headless Platform?**
+
 A: Decoupling the User Interface (frontend) from the backend services.
 
 **Q: Who consumes the platform's responses?**
+
 A: Another system, such as a website or mobile app.
 
 **Q: What are the advantages of this design?**
+
 A: It allows multiple frontends targeted to different end-users, niches, and countries, each customizable in design and features.
 
 ## See also

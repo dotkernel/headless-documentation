@@ -18,12 +18,15 @@ Dotkernel API:
 ## FAQ
 
 **Q: What is Dotkernel API built on?**
+
 A: It's a REST API based on the Mezzio skeleton.
 
 **Q: What role does Dotkernel API play in the Headless Platform?**
+
 A: It is the root of the Dotkernel Headless Platform.
 
 **Q: What standards does Dotkernel API implement?**
+
 A: PSR-7 and PSR-15, as defined by the PHP Framework Interop Group (PHP-FIG).
 
 ## See also

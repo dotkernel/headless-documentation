@@ -23,10 +23,13 @@ Regardless of which pieces you use, every Dotkernel application and package boot
 ## FAQ
 
 **Q: What are the building blocks of the Dotkernel Headless Platform?**
+
 A: Dotkernel API, Dotkernel Admin, Dotkernel Queue, and the Core submodule.
 
 **Q: Do I need all four components to get started?**
+
 A: No, you can start with just Admin or just API and add the others as your requirements grow.
 
 **Q: How do multiple applications stay consistent with each other?**
+
 A: By sharing a Core submodule for entities and services, and by each bootstrapping through its own ConfigProvider.

@@ -23,12 +23,15 @@ Later on you can add:
 ## FAQ
 
 **Q: Should I start with Dotkernel API or Admin?**
+
 A: Starting with Dotkernel API is a safe bet since it can manage access permissions to keep your data secure.
 
 **Q: How does Dotkernel API separate admin and regular users?**
+
 A: Admin-level users create and edit the data, while regular users read the data for your frontend.
 
 **Q: What can I add to Dotkernel API later?**
+
 A: Dotkernel Admin for its table-based management, reports and graphs, and Dotkernel Queue for asynchronous task processing.
 
 ## See also

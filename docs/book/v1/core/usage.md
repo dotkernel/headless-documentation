@@ -33,12 +33,15 @@ Whenever you create new shared code, you should add it in the Core submodule and
 ## FAQ
 
 **Q: What does a platform using the Core submodule look like?**
+
 A: Each application (API, Admin, Queue) pairs with Core, with each box being a separate Git repository.
 
 **Q: Should all new code go into Core?**
+
 A: No, only shared code should go into Core — functionality used by only one application can stay in that application.
 
 **Q: What kinds of entities are already split between applications?**
+
 A: For example, Admin has admins, admin logins, and settings entities, while API has users, admins, and authentication entities.
 
 ## See also

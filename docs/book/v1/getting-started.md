@@ -36,13 +36,17 @@ Refer to the official Dotkernel Queue documentation for its installation and mes
 ## FAQ
 
 **Q: What PHP version do I need?**
+
 A: PHP 8.3, 8.4, or 8.5 for Dotkernel API and Admin; PHP 8.4 or 8.5 for Dotkernel Queue.
 
 **Q: What database does Dotkernel use?**
+
 A: API and Admin use Doctrine ORM, typically against a MariaDB or MySQL database.
 
 **Q: Why am I prompted about ConfigProviders during installation?**
+
 A: Composer may ask whether to inject additional ConfigProviders — decline, since the application's required ConfigProviders are already included.
 
 **Q: Do I need to configure anything before running the application for the first time?**
+
 A: Yes — duplicate the distributed local configuration files, fill in your database connection details, run migrations (and fixtures, if provided), and change any default credentials before production use.

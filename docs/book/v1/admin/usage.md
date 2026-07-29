@@ -20,12 +20,15 @@ Later on you can add:
 ## FAQ
 
 **Q: Can Dotkernel Admin be used on its own?**
+
 A: Yes, it can be installed independently and integrated into your existing platform.
 
 **Q: Are Dotkernel Admin, API, and Queue part of the same codebase?**
+
 A: No, out of the box they are separate codebases designed to complement each other.
 
 **Q: What do Dotkernel API and Dotkernel Queue add to Admin?**
+
 A: The API handles data manipulation for the platform, and Queue handles asynchronous task processing.
 
 ## See also

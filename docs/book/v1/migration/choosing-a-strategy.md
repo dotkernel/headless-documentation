@@ -26,10 +26,13 @@ In practice, Modular Refactoring and the Strangler Fig Pattern are often used to
 ## FAQ
 
 **Q: Which migration strategy has the lowest risk?**
+
 A: The Strangler Fig Pattern, since each change is small, reversible, and easy to test in isolation.
 
 **Q: When does a Full Rewrite make sense?**
+
 A: Mainly for small or simple systems, or when the existing codebase is too tightly coupled for an incremental migration to be practical.
 
 **Q: How do Modular Refactoring and the Strangler Fig Pattern relate?**
+
 A: Modular Refactoring prepares a large, tightly coupled codebase for migration by breaking it into modules; the Strangler Fig Pattern is then typically used to carry out the actual migration, module by module.

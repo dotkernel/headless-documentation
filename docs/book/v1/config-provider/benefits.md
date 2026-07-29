@@ -18,12 +18,15 @@ Lists the benefits of using a ConfigProvider, including centralized, modular, co
 ## FAQ
 
 **Q: Why use a ConfigProvider instead of hardcoding bootstrap code?**
+
 A: It centralizes configuration so it's easy to read, change, or extend.
 
 **Q: Does a ConfigProvider work with dependency injection containers?**
+
 A: Yes, it's container-friendly and works with DI containers like Laminas ServiceManager, PHP-DI, or Pimple.
 
 **Q: Do I need to register Dotkernel ConfigProviders manually?**
+
 A: Yes, Dotkernel ConfigProviders must be added manually in `config/config.php`.
 
 ## See also

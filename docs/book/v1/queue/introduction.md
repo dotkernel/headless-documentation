@@ -19,12 +19,15 @@ Dotkernel Queue:
 ## FAQ
 
 **Q: What is Dotkernel Queue?**
+
 A: A standalone microservice for processing asynchronous tasks, separate from your API or Admin application.
 
 **Q: What is Dotkernel Queue built on?**
+
 A: The Mezzio microframework, using Laminas Messenger to dispatch and handle messages.
 
 **Q: Why would I use Dotkernel Queue?**
+
 A: To offload slow or non-critical work, such as sending emails, generating exports, or processing uploads, so it doesn't block the request/response cycle.
 
 ## See also

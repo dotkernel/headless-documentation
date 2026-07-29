@@ -25,12 +25,15 @@ It is also the perfect opportunity to implement modern design patterns recommend
 ## FAQ
 
 **Q: What does "migration" primarily refer to?**
+
 A: The transfer of functionality (the codebase) from one platform to another, e.g. from MVC to middleware.
 
 **Q: What else can a complex platform migration include?**
+
 A: Replatforming, refactoring, and database or storage migration.
 
 **Q: Why is migration a good opportunity beyond just moving code?**
+
 A: It's a chance to implement modern design patterns recommended by the development community.
 
 ## See also
