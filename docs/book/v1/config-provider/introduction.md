@@ -1,5 +1,11 @@
 # Introduction
 
+## Summary
+
+Introduces the `ConfigProvider` class, what it returns, and how it's used across Dotkernel applications and packages, with a code example.
+
+## Details
+
 In PHP, the `ConfigProvider` is a class that is part of an application's bootstrap process.
 It returns an array of configuration, settings, or anything else your application needs.
 In Dotkernel, each application module and package contains a `ConfigProvider` that normally returns:
@@ -51,3 +57,20 @@ All Dotkernel applications and packages use ConfigProviders:
 - [Dotkernel Frontend](https://docs.dotkernel.org/frontend-documentation/)
 - [Dotkernel Light](https://docs.dotkernel.org/light-documentation/)
 - [Dotkernel Packages](https://docs.dotkernel.org/packages/)
+
+## FAQ
+
+**Q: What does a ConfigProvider return in Dotkernel?**
+A: Dependency injection mappings, request handlers, and template file paths.
+
+**Q: Which Dotkernel applications use ConfigProviders?**
+A: Dotkernel API, Admin, Frontend, Light, and Packages all use ConfigProviders.
+
+**Q: Is the Dotkernel ConfigProvider approach specific to Dotkernel?**
+A: No, it follows an approach similar to Laminas/Mezzio.
+
+## See also
+
+- [How the ConfigProvider works](functionality.md)
+- [Benefits](benefits.md)
+- [Glossary](../glossary.md)

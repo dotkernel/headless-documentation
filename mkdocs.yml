@@ -9,12 +9,17 @@ nav:
   - Home: index.md
   - v1:
       - Introduction: v1/introduction.md
+      - "Architecture Overview": v1/architecture.md
+      - "Getting Started": v1/getting-started.md
       - API:
           - "Introduction": v1/api/introduction.md
           - "Usage": v1/api/usage.md
       - Admin:
           - "Introduction": v1/admin/introduction.md
           - "Usage": v1/admin/usage.md
+      - Queue:
+          - "Introduction": v1/queue/introduction.md
+          - "Usage": v1/queue/usage.md
       - Core:
           - "Introduction": v1/core/introduction.md
           - "Creation": v1/core/creation.md
@@ -24,6 +29,13 @@ nav:
           - "Introduction": v1/config-provider/introduction.md
           - "Functionality": v1/config-provider/functionality.md
           - "Benefits": v1/config-provider/benefits.md
+      - Migration:
+          - "Introduction": v1/migration/introduction.md
+          - "Choosing a Strategy": v1/migration/choosing-a-strategy.md
+          - "Full Rewrite": v1/migration/full-rewrite.md
+          - "Modular Refactoring": v1/migration/modular-refactoring.md
+          - "Strangler Fig": v1/migration/strangler-fig.md
+      - Glossary: v1/glossary.md
 site_name: "Dotkernel Headless Platform"
 site_description: "Dotkernel Headless Platform"
 repo_url: "https://github.com/dotkernel/headless-documentation"

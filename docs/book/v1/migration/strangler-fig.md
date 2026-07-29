@@ -1,5 +1,11 @@
 # Strangler Fig Pattern or Incremental Migration
 
+## Summary
+
+Describes the Strangler Fig (incremental) migration strategy, how it works, and its main advantages.
+
+## Definition
+
 The Strangler Fig Pattern is a software migration strategy that implies gradually replacing parts of the old application with new components until the old application is not needed any more.
 
 ## How It Works
@@ -25,3 +31,20 @@ The Strangler Fig Pattern is the recommended way to go for legacy applications, 
 You mitigate downtime and risk by handling small, easily manageable sections of code at any given time.
 One restriction for this pattern is that you need to be able to intercept requests and redirect execution.
 The development team can be smaller (since you isolate sections of code you work on) and the development schedule is more adaptable (you can stop at any time because the old application is always there).
+
+## FAQ
+
+**Q: What is the Strangler Fig Pattern?**
+A: A migration strategy that gradually replaces parts of the old application with new components until the old one is no longer needed.
+
+**Q: What must be in place for the Strangler Fig Pattern to work?**
+A: The ability to intercept requests and redirect execution via a routing layer.
+
+**Q: Why is this pattern recommended for complex legacy applications?**
+A: It mitigates downtime and risk by handling small, manageable sections of code at a time.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Modular Refactoring](modular-refactoring.md)
+- [Full Rewrite or Big Bang Rewrite](full-rewrite.md)

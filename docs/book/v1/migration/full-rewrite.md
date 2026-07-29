@@ -1,5 +1,11 @@
 # Full Rewrite or Big Bang Rewrite
 
+## Summary
+
+Describes the Full Rewrite migration strategy, how it works, and its main advantages and disadvantages.
+
+## Definition
+
 A full rewrite is a software migration strategy that implies completely rebuilding the system from scratch in the new architecture or technology.
 
 ## How It Works
@@ -31,3 +37,20 @@ The disadvantages often weigh heavy against choosing this approach:
 Performing a full rewrite is no easy choice.
 More often than not, the costs are the main reason you would not choose this migration strategy.
 You may find yourself delaying its implementation until you are forced to do so by circumstance.
+
+## FAQ
+
+**Q: What is a Full Rewrite migration strategy?**
+A: Completely rebuilding the system from scratch in the new architecture or technology.
+
+**Q: What is the biggest risk of a full rewrite?**
+A: High risk — the release must work on the first try, with no partial rollback.
+
+**Q: Why might a full rewrite be expensive?**
+A: Building a second product in parallel can prove just as costly as the original product.
+
+## See also
+
+- [Choosing a Migration Strategy](choosing-a-strategy.md)
+- [Modular Refactoring](modular-refactoring.md)
+- [Strangler Fig Pattern or Incremental Migration](strangler-fig.md)
