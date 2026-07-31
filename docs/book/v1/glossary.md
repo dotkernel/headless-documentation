@@ -50,6 +50,10 @@ The PSR specification defining HTTP server request handlers and middleware inter
 **Replatforming**
 Moving a software system to a new infrastructure or environment — for example, from on-premises servers to the cloud — as part of a broader [migration](migration/introduction.md).
 
+**Service**
+A class that holds business logic — the rules and the sequence of steps an operation requires — kept separate from request handlers, entities, and repositories, and injected through the DI container behind an interface.
+See [The Service Layer](services.md).
+
 **Stratigility**
 The Laminas library that implements the middleware pipeline Mezzio applications run on, iterating over registered middleware in order until a response is returned.
 See [How the ConfigProvider works](config-provider/functionality.md).
