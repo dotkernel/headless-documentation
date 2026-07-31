@@ -36,6 +36,7 @@ A: At `src/Core`.
 
 ## See also
 
+- [Structure of the Core Submodule](structure.md)
 - [Benefits of the Core Submodule](benefits.md)
 - [Creating a Core Submodule](creation.md)
 - [Using the Core Submodule](usage.md)
