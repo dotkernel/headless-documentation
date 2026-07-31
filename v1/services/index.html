@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/services/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Introduction - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>The Service Layer - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -170,7 +170,7 @@
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                    <li class="breadcrumb-item active" aria-current="page">The Service Layer</li>
                 
             
         </ol>
@@ -197,8 +197,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -215,8 +215,8 @@
 
                     
                         
-<li class="subnavigation__list-item ">
-    <a href="../services/" class="subnavigation__link">The Service Layer</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">The Service Layer</a>
 </li>
 
                     
@@ -551,7 +551,7 @@
     
     
         <p class="view-as-markdown text-end small mb-2">
-            <a href="../introduction.md" class="text-body-secondary text-decoration-none"
+            <a href="../services.md" class="text-body-secondary text-decoration-none"
                type="text/markdown" rel="alternate" title="View the Markdown source of this page">
                 <i class="bi bi-filetype-md"></i>
                 View as Markdown
@@ -559,31 +559,143 @@
         </p>
     
 
-    <h1 id="introduction">Introduction</h1>
+    <h1 id="the-service-layer">The Service Layer</h1>
 <h2 id="summary">Summary</h2>
-<p>Introduces the Headless Platform principle of decoupling frontend from backend, and the versatility this brings for supporting multiple frontends.</p>
+<p>Explains why Dotkernel keeps business logic in dedicated Service classes instead of in request handlers, entities, or repositories, and lists the advantages of that separation over the alternatives.</p>
 <h2 id="details">Details</h2>
-<p>The principle of a Headless Platform is to decouple the User Interface (frontend) from the backend services.
-The responses from the platform are then used by another system, such as a website or mobile app.</p>
-<p><img alt="Headless Platform" src="https://docs.dotkernel.org/img/headless-platform/api-comms4.png" class="img-responsive"/></p>
-<p>Its design leads to a great deal of versatility in the setup and configuration.
-Here are some advantages of the Headless Platform:</p>
+<p>Every Dotkernel module splits its code by responsibility, and business logic gets a directory of its own:</p>
+<pre class="highlight"><code class="language-text">src/User/src/
+├── Handler/      # PSR-15 request handlers — HTTP in, HTTP out
+├── InputFilter/  # validation of incoming data
+├── Service/      # business logic
+└── ConfigProvider.php</code></pre>
+<p>Entities and repositories live alongside them (in the <a href="../core/introduction/">Core submodule</a>, once you have one), so a single feature is spread across four narrow layers rather than one wide class:</p>
 <ul>
-<li>The ability to have multiple frontends, each targeted to various end-users, like desktop vs mobile, iOS vs Android, etc.</li>
-<li>Different frontends (websites) for various niches (younger vs older users) and countries (including localization).</li>
-<li>Ability to customize separate frontends in terms of design, as well as available features.</li>
+<li><strong>Handler</strong> — reads the request, calls a Service, turns the result into a response.</li>
+<li><strong>Service</strong> — the business rules: what "activating a user" actually means.</li>
+<li><strong>Repository</strong> — retrieving and persisting entities.</li>
+<li><strong>Entity</strong> — the data and the state changes intrinsic to it.</li>
 </ul>
+<h3 id="what-that-looks-like-in-practice">What that looks like in practice</h3>
+<p>A handler stays thin. It declares the Service it needs as a constructor dependency, delegates, and returns:</p>
+<pre class="highlight"><code class="language-php">class PatchUserActivateHandler extends AbstractHandler
+{
+    #[Inject(MailService::class, UserServiceInterface::class, RendererInterface::class)]
+    public function __construct(
+        protected MailService $mailService,
+        protected UserServiceInterface $userService,
+        protected RendererInterface $renderer,
+    ) {
+    }
+
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $user = $request-&gt;getAttribute(User::class);
+        if ($user-&gt;isActive()) {
+            throw ConflictException::create(Message::USER_ALREADY_ACTIVATED);
+        }
+
+        $this-&gt;userService-&gt;activateUser($user);
+        $this-&gt;mailService-&gt;sendActivationMail(
+            $user,
+            $this-&gt;renderer-&gt;render('user::activate', ['user' =&gt; $user])
+        );
+
+        return $this-&gt;infoResponse(Message::USER_ACTIVATED);
+    }
+}</code></pre>
+<p>The Service holds the rules and the orchestration, and it is the only layer that knows the <em>sequence</em> of steps a business operation requires:</p>
+<pre class="highlight"><code class="language-php">public function deleteUser(User $user): User
+{
+    $this-&gt;revokeTokens($user);
+
+    return $this-&gt;anonymizeUser($user);
+}</code></pre>
+<p>Note that separating Services does not mean emptying your entities.
+<code>UserService::activateUser()</code> calls <code>$user-&gt;activate()</code> and then hands the entity to the repository.
+State changes stay on the entity, while the surrounding workflow (revoking tokens, anonymizing, saving, notifying) stays in the Service.</p>
+<h3 id="services-are-injected-never-instantiated">Services are injected, never instantiated</h3>
+<p>Each Service is registered in its module's <a href="../config-provider/introduction/">ConfigProvider</a> and resolved through the DI container, and Dotkernel ships each one behind an interface (<code>UserServiceInterface</code>, <code>AdminServiceInterface</code>, <code>SettingServiceInterface</code>, etc.).
+Consumers depend on the interface, so the implementation can be replaced without touching a single handler.
+You can use your own subclass, a decorator that adds caching or logging, or a fake in a test.</p>
+<h3 id="advantages">Advantages</h3>
+<ul>
+<li><strong>Reuse across entry points</strong> — the same Service backs an HTTP handler, a CLI command, and a <a href="../queue/introduction/">Queue</a> consumer.
+Business logic written inside a request handler can only ever be reached over HTTP.</li>
+<li><strong>Reuse across applications</strong> — shared Services such as <code>MailService</code> and <code>IpService</code> live in the <a href="../core/usage/">Core submodule</a> and are consumed identically by API, Admin, and Queue, so a fix lands once instead of once per repository.</li>
+<li><strong>Testable without a framework</strong> — a Service takes repositories and config in its constructor, so you unit test it with plain objects.
+Testing the same logic embedded in a handler means building a PSR-7 request and asserting against a response body.</li>
+<li><strong>Swappable implementations</strong> — because consumers depend on <code>…ServiceInterface</code>, you override behavior by rebinding one entry in a ConfigProvider.</li>
+<li><strong>One obvious place to look</strong> — "where does user deletion happen?" has a single answer.
+This is what makes onboarding and bugfixing cheap as the platform grows (see <a href="../core/benefits/">Benefits of the Core Submodule</a>).</li>
+<li><strong>Contained change</strong> — switching from synchronous email to a queued job, or from one payment provider to another, touches the Service.
+Handlers, routes, and templates stay as they are.</li>
+<li><strong>Consistent rules</strong> — API and Admin can present the same operation very differently while both calling the same Service, so the two applications cannot drift into two subtly different definitions of the same business rule.</li>
+</ul>
+<h3 id="versus-the-alternatives">Versus the alternatives</h3>
+<p>Let's consider the alternative architectures and what each one costs you.
+These are the places where business logic ends up when it isn't given a layer of its own.</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>What it looks like</th>
+<th>Why Dotkernel avoids it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logic in the request handler</strong> ("fat controller")</td>
+<td>The handler validates, queries, applies rules, saves, and sends mail</td>
+<td>Reachable only over HTTP; needs a full request to test; the same rule gets copy-pasted into the next handler that needs it</td>
+</tr>
+<tr>
+<td><strong>Logic in the entity</strong> ("fat model")</td>
+<td><code>$user-&gt;activate()</code> also revokes tokens and sends the activation email</td>
+<td>Entities are hydrated by Doctrine, not by the DI container, so they can't cleanly receive a mailer or repository; persistence concerns end up tangled with workflows</td>
+</tr>
+<tr>
+<td><strong>Logic in the repository</strong></td>
+<td>Repository methods orchestrate several entities and trigger side effects</td>
+<td>Repositories are about retrieving and persisting; mixing in orchestration makes them application-specific and no longer safe to share through Core</td>
+</tr>
+<tr>
+<td><strong>Logic in middleware</strong></td>
+<td>Business rules enforced by pipeline middleware</td>
+<td>Only fires on HTTP paths, depends on pipeline ordering, and is invisible to CLI and Queue execution</td>
+</tr>
+<tr>
+<td><strong>Logic duplicated per application</strong></td>
+<td>API and Admin each implement user activation their own way</td>
+<td>Every bug is fixed twice, and the two implementations drift apart over time</td>
+</tr>
+<tr>
+<td><strong>Static helpers / utility classes</strong></td>
+<td><code>UserHelper::activate($user)</code></td>
+<td>Nothing to inject and nothing to substitute, so tests and alternative implementations both have to reach around the helper</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every one of these alternatives works right up until a second caller, a second application, or a second developer arrives — and then the logic has to be found, untangled, and copied.
+Dotkernel gives business logic its own layer from the start, so it is written once, injected wherever it is required, tested in isolation, and shared through <a href="../core/introduction/">Core</a> instead of duplicated.
+Adding a Queue consumer or an Admin screen on top of existing rules becomes a matter of calling a Service, not of reimplementing it.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: What is the core principle of a Headless Platform?</strong></p>
-<p>A: Decoupling the User Interface (frontend) from the backend services.</p>
-<p><strong>Q: Who consumes the platform's responses?</strong></p>
-<p>A: Another system, such as a website or mobile app.</p>
-<p><strong>Q: What are the advantages of this design?</strong></p>
-<p>A: It allows multiple frontends targeted to different end-users, niches, and countries, each customizable in design and features.</p>
+<p><strong>Q: Why not just put the business logic in the request handler?</strong></p>
+<p>A: Because logic inside a handler is only reachable over HTTP. A Service can be called from a handler, a CLI command, or a Queue consumer, and it can be unit tested without constructing a request.</p>
+<p><strong>Q: Does using Services mean my entities should have no behaviour?</strong></p>
+<p>A: No. State changes intrinsic to the entity stay on the entity — <code>UserService::activateUser()</code> calls <code>$user-&gt;activate()</code>. The Service owns the surrounding workflow: saving, revoking tokens, and sending notifications.</p>
+<p><strong>Q: What's the difference between a Service and a Repository?</strong></p>
+<p>A: A repository retrieves and persists entities. A Service applies business rules and orchestrates the steps of an operation, calling one or more repositories to do so.</p>
+<p><strong>Q: Why does every Service have an interface?</strong></p>
+<p>A: So consumers depend on <code>…ServiceInterface</code> rather than a concrete class. You can swap in your own implementation, decorate it, or mock it in tests by rebinding one entry in a ConfigProvider.</p>
+<p><strong>Q: Where should a Service live — in the application or in Core?</strong></p>
+<p>A: In Core if more than one application needs it, as with <code>MailService</code> and <code>IpService</code>. Keep it in the application if only that application uses it.</p>
 <h2 id="see-also">See also</h2>
 <ul>
-<li><a href="../architecture/">Architecture Overview</a> — how Dotkernel implements this principle with API, Admin, Queue, and Core.</li>
-<li><a href="../getting-started/">Getting Started</a> — prerequisites and installation basics.</li>
+<li><a href="../architecture/">Architecture Overview</a></li>
+<li><a href="../core/usage/">Using the Core Submodule</a></li>
+<li><a href="../config-provider/introduction/">ConfigProvider: Introduction</a></li>
+<li><a href="../glossary/">Glossary</a></li>
 </ul>
 
 
@@ -594,9 +706,9 @@ Here are some advantages of the Headless Platform:</p>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../getting-started/">
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Getting Started
                 </a>
             
         </li>
@@ -604,8 +716,8 @@ Here are some advantages of the Headless Platform:</p>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../architecture/">
-                    Architecture Overview
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../api/introduction/">
+                    Introduction
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

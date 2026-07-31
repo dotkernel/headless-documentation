@@ -215,6 +215,12 @@
 
                     
                         
+<li class="subnavigation__list-item ">
+    <a href="../services/" class="subnavigation__link">The Service Layer</a>
+</li>
+
+                    
+                        
 
 
 
@@ -534,6 +540,17 @@
     
     
 
+    
+    
+        <p class="view-as-markdown text-end small mb-2">
+            <a href="../glossary.md" class="text-body-secondary text-decoration-none"
+               type="text/markdown" rel="alternate" title="View the Markdown source of this page">
+                <i class="bi bi-filetype-md"></i>
+                View as Markdown
+            </a>
+        </p>
+    
+
     <h1 id="glossary">Glossary</h1>
 <h2 id="summary">Summary</h2>
 <p>Plain-language definitions for the standards, frameworks, and terms used throughout this documentation.</p>
@@ -569,6 +586,9 @@ The PSR specification defining HTTP message interfaces (requests and responses) 
 The PSR specification defining HTTP server request handlers and middleware interfaces in PHP.</p>
 <p><strong>Replatforming</strong>
 Moving a software system to a new infrastructure or environment — for example, from on-premises servers to the cloud — as part of a broader <a href="../migration/introduction/">migration</a>.</p>
+<p><strong>Service</strong>
+A class that holds business logic — the rules and the sequence of steps an operation requires — kept separate from request handlers, entities, and repositories, and injected through the DI container behind an interface.
+See <a href="../services/">The Service Layer</a>.</p>
 <p><strong>Stratigility</strong>
 The Laminas library that implements the middleware pipeline Mezzio applications run on, iterating over registered middleware in order until a response is returned.
 See <a href="../config-provider/functionality/">How the ConfigProvider works</a>.</p>
