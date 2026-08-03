@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="Dotkernel Headless Platform">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/migration/modular-refactoring/">
+        <link rel="canonical" href="https://docs.dotkernel.org/headless-documentation/v1/core/structure/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Modular Refactoring - Dotkernel Headless Platform - Dotkernel Documentation</title>
+        <title>Structure - Dotkernel Headless Platform - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -172,12 +172,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Migration</li>
+                                <li class="breadcrumb-item">Core</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Modular Refactoring</li>
+                    <li class="breadcrumb-item active" aria-current="page">Structure</li>
                 
             
         </ol>
@@ -351,31 +351,31 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core/structure/" class="subnavigation__link">Structure</a>
+    <a href="../creation/" class="subnavigation__link">Creation</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core/creation/" class="subnavigation__link">Creation</a>
+    <a href="../usage/" class="subnavigation__link">Usage</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core/usage/" class="subnavigation__link">Usage</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../core/benefits/" class="subnavigation__link">Benefits</a>
+    <a href="../benefits/" class="subnavigation__link">Benefits</a>
 </li>
 
         
@@ -473,31 +473,31 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../../migration/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../choosing-a-strategy/" class="subnavigation__link">Choosing a Strategy</a>
+    <a href="../../migration/choosing-a-strategy/" class="subnavigation__link">Choosing a Strategy</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../full-rewrite/" class="subnavigation__link">Full Rewrite</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Modular Refactoring</a>
+    <a href="../../migration/full-rewrite/" class="subnavigation__link">Full Rewrite</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../strangler-fig/" class="subnavigation__link">Strangler Fig</a>
+    <a href="../../migration/modular-refactoring/" class="subnavigation__link">Modular Refactoring</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../migration/strangler-fig/" class="subnavigation__link">Strangler Fig</a>
 </li>
 
         
@@ -534,23 +534,7 @@
                 </li>
             
                 <li class="toc__entry">
-                    <a href="#definition" class="toc__link nav-link">Definition</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#how-it-works" class="toc__link nav-link">How It Works</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#pluses" class="toc__link nav-link">Pluses</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#minuses" class="toc__link nav-link">Minuses</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#conclusion" class="toc__link nav-link">Conclusion</a>
+                    <a href="#details" class="toc__link nav-link">Details</a>
                 </li>
             
                 <li class="toc__entry">
@@ -576,13 +560,13 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Migration</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Core</h2>-->
     
 
     
     
         <p class="view-as-markdown text-end small mb-2">
-            <a href="../modular-refactoring.md" class="text-body-secondary text-decoration-none"
+            <a href="../structure.md" class="text-body-secondary text-decoration-none"
                type="text/markdown" rel="alternate" title="View the Markdown source of this page">
                 <i class="bi bi-filetype-md"></i>
                 View as Markdown
@@ -590,53 +574,146 @@
         </p>
     
 
-    <h1 id="modular-refactoring">Modular Refactoring</h1>
+    <h1 id="structure-of-the-core-submodule">Structure of the Core Submodule</h1>
 <h2 id="summary">Summary</h2>
-<p>Describes the Modular Refactoring migration strategy, how it works, and its main advantages and disadvantages.</p>
-<h2 id="definition">Definition</h2>
-<p>The Modular Refactoring is a migration strategy where you break a large, tightly coupled codebase into smaller, independent modules.
-Once the modules are defined, you begin the migration to the new architecture.</p>
-<h2 id="how-it-works">How It Works</h2>
+<p>Maps what lives inside the Core submodule — its five modules and the kind of code each one holds — and shows where the boundary falls between Core and the applications that include it.</p>
+<h2 id="details">Details</h2>
+<p><a href="../introduction/">Core</a> is not a single directory of loose classes.
+It is organized into five modules, each a PSR-4 namespace mapped under <code>src/Core/src/</code>, so the shared codebase is grouped by domain rather than by file type.</p>
+<p>Every application that includes the submodule gets all five, and every application sees exactly the same definitions.</p>
+<pre class="highlight"><code class="language-text">   ┌───────────┐   ┌───────────┐   ┌───────────┐
+   │    API    │   │   Admin   │   │   Queue   │
+   │ handlers  │   │ templates │   │ consumers │
+   │ HAL, HTTP │   │ forms, UI │   │ workers   │
+   └─────┬─────┘   └─────┬─────┘   └─────┬─────┘
+         │               │               │
+         └───────────────┼───────────────┘
+                         │  each includes Core
+                         ▼
+              ┌─────────────────────┐
+              │        Core         │
+              │  entities · repos   │
+              │  enums · DBAL types │
+              └──────────┬──────────┘
+                         ▼
+                ┌─────────────────┐
+                │    database     │
+                └─────────────────┘</code></pre>
+<p>Note that every arrow points one way.
+The applications know about Core; Core knows nothing about any application.
+Core contains no handler, no template, no route and no middleware — which is what makes it safe to include everywhere.</p>
+<h3 id="the-five-modules">The five modules</h3>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Namespace</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td><code>Core\App</code></td>
+<td>The base entity and its traits, the abstract repository, DBAL enum and UUID types, table-prefix and entity-listener wiring, data fixtures, shared services (<code>MailService</code>, <code>IpService</code>), the paginator helper and shared messages</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td><code>Core\Admin</code></td>
+<td>The <code>Admin</code>, <code>AdminRole</code>, <code>AdminLogin</code> and <code>AdminIdentity</code> entities with their repositories, plus the admin role and status enums</td>
+</tr>
+<tr>
+<td>User</td>
+<td><code>Core\User</code></td>
+<td>The <code>User</code>, <code>UserDetail</code>, <code>UserAvatar</code>, <code>UserRole</code> and <code>UserResetPassword</code> entities with their repositories, the user status and role enums, and the avatar event listener</td>
+</tr>
+<tr>
+<td>Security</td>
+<td><code>Core\Security</code></td>
+<td>OAuth2 persistence — the access token, refresh token, auth code, client and scope entities, plus the repositories the authorization server requires</td>
+</tr>
+<tr>
+<td>Setting</td>
+<td><code>Core\Setting</code></td>
+<td>The <code>Setting</code> entity, its identifier enum and repository, for platform-wide configuration kept in the database</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>Core\App</code> is the one module that is not a domain in its own right.
+It holds the pieces the other four build on — the abstract entity every entity extends, the abstract repository every repository extends, and the Doctrine infrastructure that makes UUID identifiers and enum columns work.</p>
+<h3 id="how-the-modules-are-registered">How the modules are registered</h3>
+<p>Each module ships its own <a href="../../config-provider/introduction/">ConfigProvider</a>, and every application registers all five in <code>config/config.php</code>:</p>
+<pre class="highlight"><code class="language-php">// Dotkernel modules
+Core\Admin\ConfigProvider::class,
+Core\App\ConfigProvider::class,
+Core\Security\ConfigProvider::class,
+Core\Setting\ConfigProvider::class,
+Core\User\ConfigProvider::class,</code></pre>
+<p>This is why including the submodule is enough to get the whole domain layer: the entities, repositories and DBAL types register themselves, exactly as they do in every other application on the platform.</p>
+<p>The PSR-4 map in <code>composer.json</code> points at the submodule path, so it needs no change when a plain <code>src/Core</code> folder becomes a submodule mounted at the same location:</p>
+<pre class="highlight"><code class="language-json">"autoload": {
+    "psr-4": {
+        "Core\\Admin\\": "src/Core/src/Admin/src/",
+        "Core\\App\\": "src/Core/src/App/src/",
+        "Core\\Security\\": "src/Core/src/Security/src/",
+        "Core\\Setting\\": "src/Core/src/Setting/src/",
+        "Core\\User\\": "src/Core/src/User/src/"
+    }
+}</code></pre>
+<h3 id="where-the-boundary-falls">Where the boundary falls</h3>
+<p>The question that comes up on almost every feature is whether the new code belongs in Core or in the application.
+The dividing line is delivery: Core describes what the data <em>is</em>, the application describes how it is <em>delivered</em>.</p>
+<pre class="highlight"><code class="language-text">  application (API / Admin / Queue)
+  ┌──────────────────────────────────────────────────┐
+  │  Handler / Consumer    HTTP or message entry     │
+  │  InputFilter / Form    validates this interface  │
+  │  Service               this application's flow   │
+  └────────────────────────┬─────────────────────────┘
+                           │  depends on
+  Core                     ▼
+  ┌──────────────────────────────────────────────────┐
+  │  Service (shared)      MailService, IpService    │
+  │  Repository            querying and persistence  │
+  │  Entity + Enum         the model itself          │
+  └──────────────────────────────────────────────────┘</code></pre>
+<p>Use this as a checklist:</p>
 <ul>
-<li>Identify logical boundaries in the business logic.
-Search for sections of code that can function independently.</li>
-<li>Decouple dependencies.
-Refactor code to reduce direct cross-module calls, often introducing interfaces or APIs for communication.</li>
-<li>Isolate each module.
-Ensure each module can be built, tested, and deployed separately.</li>
-<li>Migrate module-by-module.
-Move one module at a time to the new architecture, integrate it back into the system, and test its functionality before moving on.</li>
+<li><strong>Belongs in Core</strong> — entities and the state changes intrinsic to them, repositories, enums, DBAL types, data fixtures, Doctrine listeners and factories, and any service that behaves identically no matter which application calls it.</li>
+<li><strong>Belongs in the application</strong> — handlers and consumers, middleware, routes, input filters and forms, templates, HAL resources, OpenAPI annotations, and the services that express that application's own workflows.</li>
+<li><strong>Never in Core</strong> — anything that imports a PSR-7 message, a template renderer, a session, a HAL type or a Messenger envelope.
+If Core would need to know how the request arrived, the code is on the wrong side of the line.</li>
 </ul>
-<h2 id="pluses">Pluses</h2>
-<ul>
-<li>Controlled scope – Each migration step is focused on one module.</li>
-<li>Improved maintainability – As the migration progresses, the system becomes cleaner and more modular.</li>
-<li>Enables parallel work – You can assign different development teams to migrate different modules at the same time.</li>
-<li>Lower risk – If a migration fails, only one part of the system is affected.</li>
-</ul>
-<h2 id="minuses">Minuses</h2>
-<ul>
-<li>Refactoring cost – Breaking a monolith into modules takes time and effort.</li>
-<li>Possible temporary slowdown – You may need to allocate resources from new feature development to the refactoring effort.</li>
-<li>Requires strong design discipline – You need to carefully plan modules to avoid repeated rework.</li>
-</ul>
-<h2 id="conclusion">Conclusion</h2>
-<p>Modular Refactoring implies a great deal of preparation (proportional to the complexity of the application) before the migration takes place.
-You take e.g. the existing monolith and reorganize it into clearly defined modules, while in the same repository.
-You can then extract the modules into new repositories or move them into microservices, and create interfaces between the old and the new code.
-For the actual code migration, you can opt for the Strangler Fig Pattern.</p>
+<p>The service layer is the case worth understanding properly, because it sits on both sides: shared services such as <code>MailService</code> live in Core, while application-specific ones do not.
+API and Admin each have their own <code>UserService</code>, both operating on the same <code>Core\User\Entity\User</code> through the same <code>Core\User\Repository\UserRepository</code>.
+That is deliberate rather than duplication — the two applications present the same operation very differently while the model underneath stays single.
+<a href="../../services/">The Service Layer</a> covers the reasoning in full.</p>
+<h3 id="core-owns-the-schema">Core owns the schema</h3>
+<p>Because the entities live in Core, Doctrine generates migrations from Core's mappings.
+That makes the schema a shared asset, and it needs a single owner.</p>
+<p>Decide once which application is responsible for generating and running migrations — normally the API — and keep it there.
+Two applications generating migrations independently against the same mappings will produce conflicting histories, and reconciling them after the fact is considerably harder than agreeing the convention up front.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: What is Modular Refactoring?</strong></p>
-<p>A: Breaking a large, tightly coupled codebase into smaller, independent modules before migrating them.</p>
-<p><strong>Q: Can teams work on Modular Refactoring in parallel?</strong></p>
-<p>A: Yes, it enables parallel work — different teams can migrate different modules at the same time.</p>
-<p><strong>Q: What pattern is recommended for the actual code migration after modularizing?</strong></p>
-<p>A: The Strangler Fig Pattern.</p>
+<p><strong>Q: How many modules does Core contain?</strong></p>
+<p>A: Five — <code>Core\App</code>, <code>Core\Admin</code>, <code>Core\User</code>, <code>Core\Security</code> and <code>Core\Setting</code>, each mapped under <code>src/Core/src/</code>.</p>
+<p><strong>Q: What is <code>Core\App</code> for, if it isn't a domain?</strong></p>
+<p>A: It holds the foundations the other modules build on: the abstract entity and repository, the DBAL enum and UUID types, the Doctrine wiring, data fixtures and the shared services.</p>
+<p><strong>Q: Do I have to register each Core module separately?</strong></p>
+<p>A: Yes. All five ConfigProviders are listed in each application's <code>config/config.php</code>, which is what makes the entities and DBAL types available.</p>
+<p><strong>Q: How do I decide whether new code goes in Core or in my application?</strong></p>
+<p>A: Ask whether it describes the data or the delivery. Entities, repositories, enums and DBAL types describe the data and belong in Core; handlers, templates, input filters and application-specific services describe delivery and stay in the application.</p>
+<p><strong>Q: Why do API and Admin each have their own <code>UserService</code> if Core is meant to prevent duplication?</strong></p>
+<p>A: Because they are different workflows over the same model. Both use <code>Core\User\Entity\User</code> and <code>Core\User\Repository\UserRepository</code>, so the data has one definition even though the two applications present it differently.</p>
+<p><strong>Q: Which application should run the Doctrine migrations?</strong></p>
+<p>A: One of them, chosen deliberately — usually the API. Because Core owns the entities, migrations generated independently by two applications will conflict.</p>
+<p><strong>Q: Does the <code>composer.json</code> autoload section change when Core becomes a submodule?</strong></p>
+<p>A: No. The submodule is mounted at the same <code>src/Core</code> path, so the PSR-4 map continues to resolve. Run <code>composer dump-autoload</code> after the switch.</p>
 <h2 id="see-also">See also</h2>
 <ul>
-<li><a href="../choosing-a-strategy/">Choosing a Migration Strategy</a></li>
-<li><a href="../strangler-fig/">Strangler Fig Pattern or Incremental Migration</a></li>
-<li><a href="../full-rewrite/">Full Rewrite or Big Bang Rewrite</a></li>
+<li><a href="../introduction/">Introduction</a></li>
+<li><a href="../creation/">Creating a Core Submodule</a></li>
+<li><a href="../usage/">Using the Core Submodule</a></li>
+<li><a href="../../services/">The Service Layer</a></li>
+<li><a href="../../architecture/">Architecture Overview</a></li>
 </ul>
 
 
@@ -647,9 +724,9 @@ For the actual code migration, you can opt for the Strangler Fig Pattern.</p>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../full-rewrite/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../introduction/">
                     <i class="bi bi-chevron-left"></i>
-                    Full Rewrite
+                    Introduction
                 </a>
             
         </li>
@@ -657,8 +734,8 @@ For the actual code migration, you can opt for the Strangler Fig Pattern.</p>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../strangler-fig/">
-                    Strangler Fig
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../creation/">
+                    Creation
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
