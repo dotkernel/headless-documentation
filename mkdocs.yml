@@ -23,6 +23,7 @@ nav:
           - "Usage": v1/queue/usage.md
       - Core:
           - "Introduction": v1/core/introduction.md
+          - "Structure": v1/core/structure.md
           - "Creation": v1/core/creation.md
           - "Usage": v1/core/usage.md
           - "Benefits": v1/core/benefits.md
