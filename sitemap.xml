@@ -2,102 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/architecture/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/getting-started/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/glossary/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/services/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/admin/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/admin/usage/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/api/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/api/usage/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/config-provider/benefits/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/config-provider/functionality/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/config-provider/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/core/benefits/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/core/creation/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/core/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/core/structure/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/core/usage/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/choosing-a-strategy/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/full-rewrite/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/modular-refactoring/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/migration/strangler-fig/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/queue/introduction/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/headless-documentation/v1/queue/usage/</loc>
-         <lastmod>2026-08-03</lastmod>
+         <lastmod>2026-08-05</lastmod>
     </url>
 </urlset>
